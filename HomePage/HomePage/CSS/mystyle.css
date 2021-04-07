@@ -1,0 +1,104 @@
+@charset "EUC-KR";
+
+/* computer, clothing, music, movie, index, movie, shopcart = 내부 스타일 시트 */
+/* main */
+	*{
+		list-style : none;
+		text-decoration: none;
+		border-collapse: collapse;
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	header{
+		background-color: orange;
+		height : 100px;
+		width : 100%;
+		text-align: center;
+		
+	}
+	
+	
+	nav{
+		border-top: 3px dotted gray;
+		border-bottom: 3px dotted gray;		
+		background-color: white;
+		text-align: center;
+		width : 100%;
+		padding : 15px 0px;
+	}
+	
+
+	body{
+	 min-width: 2000px;
+	}
+	
+	footer{
+		clear : left;
+		background-color : red;
+		text-align: center;
+		width :100%;
+		height : 40px;
+	}
+	
+	section article iframe{
+		width:99.8%; 
+		height :596px;
+	}
+	
+	
+	nav ul li {
+			display : inline;
+			font-size: large;	
+			width : 20%;
+			padding : 0px 60px;
+			
+		}
+		
+	aside ul li{
+			border-radius : 100px;
+			border: 3px solid red;
+			background-color: silver;
+			font-weight:bold;
+			text-align: center;
+			padding: 20px;
+	}
+	
+	#mainimg{
+		width: 100px;
+		height: 100px;
+	}
+	
+	#left{
+		background-color : orange;
+		width: 10%;
+	}
+	
+	#right{
+		background-color : orange;
+		width: 30%;
+	}
+	
+	#main{
+		width: 60%;
+		height: 600px;
+	}
+	
+	#shopcart{
+		padding : 60px 5px;
+	}
+	
+	#login{
+		padding : 60px 5px;
+	}
+	
+	
+	.child {
+		float: left;
+		height : 600px;
+	}
+	
+
+
+	
+

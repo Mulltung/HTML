@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>덧셈 계산기</h1>
+	첫번재 정수: <input type="text" id="no1">
+	<br>
+	두번재 정수: <input type="text" id="no2">
+	<br>
+	합 계: <input type="text" id="sum">
+	<br>
+	<button type="button" onclick="sum();">계산</button>
+	
+	<script type="text/javascript">
+		function sum(){
+			// 첫번째 정수와 두 번째 정수 값을 가져와서
+			var ele1 = document.getElementById("no1")
+			var x = ele1.value;
+			
+			var ele2 = document.getElementById("no2")
+         	var y = ele2.value;
+			//	document.gtElenmentById
+		
+			// 더하고
+			var sum = parseInt(x)+parseInt(y);
+			
+			// 합계에 세팅하기 
+			document.getElementById("sum").value = sum;
+		}
+	</script>
+</body>
+</html>

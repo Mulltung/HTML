@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#btnhidden").click(function() {
+				var str = "";
+				$(":hidden").each(function() {
+						str = "" 
+							 + "태그명 : " + $(this).prop("tagName")
+							 + "\n" + "유형 : " + this.type
+							 + "\n" + "값 : " + this.value;
+				});
+					alert(str);
+			});
+			
+			$("#btnvisible").click(function() {
+				var str ="";
+			})
+		})
+	</script>
+</head>
+<body>
+	<form>
+		ID : <input type="text" value="HONG">
+		<span style="display: none;">ID가 중복됩니다</span>
+		<br>
+		이름 : <input type="text" value="홍길동"><br>
+		<span style="display:none">이름을 입력하세요.</span>
+		성별 : <input type="radio" id="male" name="gender">
+		<label for="male">남자</label>
+		<input type="radio" id="Female" name="gender">
+		<label for="Female">여자</label><br>
+		<button type="button" id="btnhidden">hidden요소</button> 
+		<button type="button" id="btnvisible">visible요소</button>
+		<br>
+		
+		<input type="hidden" id="userAge" name="userAge" value="39">
+	</form>
+</body>
+</html>
+

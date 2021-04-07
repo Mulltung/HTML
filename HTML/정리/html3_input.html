@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head> 
+		<title>input</title>
+	</head>
+	<body>
+		<form>
+			<fieldset>
+				<legend>회원정보</legend>
+				<!--아이디, 비번, 이름, 이메일, 저장버튼*/ -->
+				아이디 : <input type="text" name="userId" size="5" maxlength="10" title="설명을 쓰는 부분">
+				<br>
+				비밀번호 : <input type="password" name="userPassword" size="10" maxlength="10" required>
+				<br>
+				비밀번호 확인: <input type="password" name="userPassword" placeholder="비밀번호는 3자리 이상입니다.">
+				<br>
+				이름 : <input type="text" name="userName" size="5" readonly>
+				<br>
+				이메일 : <input type="text" name="userEmail" size="20" disabled>
+				<br>
+				성별 : 
+				<input type="radio" value="M" name="gender" id="genderMale">
+				<label for="genderMale">남자</label>
+				<input type="radio" value="F" name="gender" id="genderFemale">
+				<label for="genderFemale">여자</label>
+				<br>
+				거주지역 :
+				<input type="radio" value="daejeon" name="location" readonly id="location_dae" >
+				<label for="location_dae">대전</label>
+				<input type="radio" value="no_daejeon" name="location" id="location">
+				<label for="location">대전 외</label>
+				<br>
+				취미 : 
+				<input type="checkbox" name="hobby" disabled>독서
+				<input type="checkbox" name="hobby">운동
+				<input type="checkbox" name="hobby">영화보기
+				<input type="checkbox" name="hobby" checked>음악듣기
+				<input type="checkbox" name="hobby">맛집탐방	
+				<br>
+				자격증 :
+				<input type="checkbox" name="license">교원자격증
+				<input type="checkbox" name="license" disabled>용접기능사
+				<input type="checkbox" name="license">정보처리기사
+				<br>
+				파일선택: <input type="file" accept="image/gif">
+				<br>
+				저장버튼 : <input type="button" value="저장">
+				<br>
+				제출버튼 : <input type="submit" value="전송">
+				<br>
+				초기화버튼 : <input type="reset" value="초기화">
+				<br>
+				숨김버튼 : <input type="hidden" value="숨김">
+			</fieldset>
+			<fieldset>
+				날짜 : <input type="date"> <br>
+				날짜&시간 : <input type="datetime"> <br>
+				월 : <input type="month"> <br>
+				시간 : <input type="time"> <br>
+				주 : <input type="week"> <br>
+				색상 : <input type="color"> <br>
+				이메일 : <input type="email"> <br>
+				전화번호 : <input type="tel"> <br>
+				범위 : <input type="range"> <br>
+				숫자[신발사이즈] : <input type="number" min="230" max="300" step="10"> <br>
+				url : <input type="url"> <br>
+			</fieldset>
+		</form>
+	</body>
+</html>

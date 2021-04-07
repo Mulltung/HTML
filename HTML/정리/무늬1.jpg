@@ -1,0 +1,1481 @@
+<!DOCTYPE html >
+<html lang="ko">
+
+<!-- head 시작 -->
+<head>
+<style>
+        /*.test , .test1{height: 240px; }*/
+        .test { width: 100%;
+            height: 100%;
+            line-height: 200px;
+            text-align: center;}
+        /*.test1 > img {display: inline-block; margin-top: 50%}*/
+        .test > img {  max-width: 100%;
+            max-height: 100%;
+            vertical-align: middle;}
+        /*@media only all and (max-width:1024px) {*/
+        /*    .test1, .test {height: 196px; }*/
+        /*}*/
+
+        /*@media only all and (max-width:768px) {*/
+        /*    .test1 > img { margin-top: 30% !important;}*/
+        /*    .test, .test1 {height: 143px; }*/
+        /*}*/
+        /*@media only all and (max-width:640px) {*/
+        /*    .test, .test1 {height: 170px; !important;}*/
+        /*    .test1 > img { margin-top: 30% !important;}*/
+        /*}*/
+        /*@media only all and (max-width:500px) {*/
+        /*    .test1 >  img { margin-top: 30% !important;}*/
+        /*    .test, .test1 {height: 130px; !important;}*/
+        /*}*/
+    </style>
+<title>연꽃무늬수막새 - 전통문양 디자인 디자인 문양-문화지식-문화포털</title>
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta property="og:title" content="[문화포털 전통문양] ${EO.xtitle}">
+    <meta property="og:caption" content="문화포털에서는 전통문양은 물론 문화소식, 공연전시, 예술지식자료 등 다양한 문화예술정보를 만나보실 수 있습니다.">
+    <meta property="og:description" content="문화포털에서는 전통문양은 물론 문화소식, 공연전시, 예술지식자료 등 다양한 문화예술정보를 만나보실 수 있습니다.">
+    <link rel="stylesheet" type="text/css" href="/assets/css/contents.css?v=20200218170000">
+    <link rel="stylesheet" type="text/css" href="/assets/css/respond.css?v=20200218170000">
+    <link rel="stylesheet" type="text/css" href="/assets/css/webzine.css?v=20200218170000"> <!-- 문화포털 웹진 css -->
+    <script type="text/javascript" src="/assets/js/jquery-1.11.1.min.js?v=20200218170000"></script>
+    <script type="text/javascript" src="/assets/js/slick.min.js?v=20200218170000"></script>
+    <script type="text/javascript" src="/assets/js/common_ui.js?v=20200218170000"></script>
+    <script type="text/javascript" src="/assets/js/common_fn.js?v=20200218170000"></script>
+    <script type="text/javascript" src="/assets/js/calendar.js?v=20200218170000"></script>
+    <script type="text/javascript" src="/assets/js/layout.js?v=20200218170000"></script>
+
+    <!-- 공유하기 -->
+    <script type="text/javascript" src="/assets/js/content_link_share.js?v=20200218170000"></script>
+    <!--<script type="text/javascript" src="/js/portal/lib/sns/kakao.js"></script>-->
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+    <!-- base -->
+    <script type="text/javascript" src="/assets/js/makePCookie.js?v=20200218170000"></script>
+<script type="text/javascript" src="/js/jquery.jqtransform.js"></script>
+<script src="/js/stl/three.min.js"></script>
+<script src="/js/stl/OrbitControls.js"></script>
+<script src="/js/stl/STLLoader.js"></script>
+<script src="/js/stl/Stats.js"></script>
+<script type="text/javascript">
+
+        $(function() {
+
+            $('.rightBtn .btnGuide').text('사용신청안내');
+
+            /* 전통디자인 > 문양코드복사 */
+            var copyButton = $('.copyPatternCode');
+            if (copyButton.size() > 0){
+                copyPatternCode(copyButton);
+            }
+        });
+
+        var copyPatternCode = function(_target) {
+            _target.parent().zclip({
+                path : "../js/ZeroClipboard.swf",
+                copy : function(){return $(this).children().attr('data-code');}
+            });
+        }
+
+        function org_down(did){
+            var applyInfo = null;
+
+            if(applyInfo == null){
+                location.href='/tradition/autoGuideB02.do?type=org&pattern_type=PG03&chkOrgImg='+did;
+            }else{
+
+                var param = "type=org&pattern_type=PG03&chkOrgImg="+did;
+
+                jQuery.ajax({
+                    type : "POST",
+                    url: '/tradition/autoPatternDownFileNew.do',
+                    data: param,
+                    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                    cache: false,
+                    dataType: "json",
+                    success : function(success) {
+                        file_check2(success.message,did);
+                    }
+                    ,error : function(result) {
+                        alert("fail");
+                    }
+                });
+
+                // $('#type').val('org');
+                // $('#pattern_type').val('PG03');
+                // $('#chkOrgImg').val(did);
+                //
+                // $('#patternDownForm').submit();
+            }
+        }
+        function file_check2(downloadkey,did){
+            window.open('/ptn/download.do?downloadkey=' + downloadkey, '_blank');
+
+            var param = "type=org&pattern_type=PG03&chkOrgImg="+did;
+            var	furl = '/tradition/autoPatternDownFileCheck.do';
+
+            $.ajax({
+                type: "POST",
+                url: furl,
+                data: param,
+                dataType : "json",
+                success: function(data) {
+                    //20.12.31 없는 함수를 호출..오류나서 주석처리함
+                    //returnMessage(data.total_count,data.exist_count,data.file_name);
+
+                    // 20.12.22 와이즈트래커 추가
+                    startDownloadWiseTracking(did,'G12');
+                }
+            });
+        }
+
+
+        function downLoadDesign(did) {
+            /**
+             <sec:authorize ifNotGranted="ROLE_USER">
+             alert("로그인하시면 \n문양을 다운로드 받으실 수 있습니다.");
+             location.href="/member/login.do?redirect_url="+escape(this.location);
+             </sec:authorize>
+             <sec:authorize ifAnyGranted="ROLE_USER">
+             location.href='designPatternDownFile.do?seq='+did;
+             </sec:authorize>
+             **/
+            window.open('/ptn/image.do?type=PG03&seq='+did);
+
+            // 20.12.22 와이즈트래커 추가
+            startDownloadWiseTracking(did,'G11');
+        }
+    </script>
+<script type="text/javascript">
+        //<[CDATA[
+
+        function ajaxCardView(seq) {
+            $.ajax({
+                url			:	'/popup/viewDesignPattern.do'
+                ,type		:	'get'
+                ,data		:	{'seq' : seq}
+                ,dataType	:	'html'
+                ,success	:	function( res ) {
+                    $('#design_pattern_2d').html( $(res) );
+                }
+                ,error		:	function(data, status, err) {
+                    alert('시스템 오류가 발생했습니다.');
+                }
+                ,complete	:	function () {
+                    //result.stop().fadeTo(300, 1);
+                    // scrollTop('#theater');
+                }
+            });
+        }
+
+        //]]>
+    </script>
+</head>
+    <!-- head 끝 -->
+<body>
+<ul id="accessibility">
+    <li><a href="#contents">본문 바로가기</a></li>
+    <li><a href="#sideMenu" >서브메뉴 바로가기</a></li>
+    <li><a href="#first_meun">주메뉴 바로가기</a></li>
+</ul>
+    <script>
+        $(function () {
+
+            $(".banner2").focusout(function(){
+                $('#sideMenu').focus();
+            });
+
+            $("#allistLast").focusout(function(){
+                $('.all_menu').focus();
+            });
+        })
+    </script>
+    <div id="wrap">
+        <div class="aside_nav_wrap">
+    <nav class="aside_nav">
+    <div class="aside_header">
+        <h2><img src="/assets/images/common/logo.png" alt="문화포털"></h2>
+        <div class="user_area">
+            
+            
+            <a href="/sso/login.do" class="login">로그인</a>
+        </div>
+    </div>
+    <ul class="nav_menu tabs">
+        <li><a href="#nav06">온라인<br/>문화체험</a></li>
+        <li><a href="#nav01">문화체험</a></li>
+        <li><a href="#nav02">문화공감</a></li>
+        <li><a href="#nav03">문화지식</a></li>
+        <li><a href="#nav04">문화알리미</a></li>
+        <li><a href="#nav07">문화데이터개방</a></li>
+        <li><a href="#nav05">회원가입</a></li>
+    </ul>
+    <div class="nav_container">
+        <div id="nav06" class="cont">
+            <h3>온라인 문화체험</h3>
+            <ul class="nav_list">
+
+                <li><a href="/homes/showList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">온라인 공연ㆍ전시</a>
+                    <ul>
+                        <li><a href="/homes/showList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">전체</a></li>
+                        <li><a href="/homes/showList.do?genre=1075" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">뮤지컬</a></li>
+                        <li><a href="/homes/showList.do?genre=1076" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">콘서트</a></li>
+                        <li><a href="/homes/showList.do?genre=1077" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">연극</a></li>
+                        <li><a href="/homes/showList.do?genre=1078" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">클래식</a></li>
+                        <li><a href="/homes/showList.do?genre=1079" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">무용</a></li>
+                        <li><a href="/homes/showList.do?genre=1080" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">스포츠</a></li>
+                        <li><a href="/homes/showList.do?genre=1081" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">전시/행사</a></li>
+                        <li><a href="/homes/showList.do?genre=1082" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">국악</a></li>
+                    </ul>
+                </li>
+
+
+                <li><a href="/homes/childList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^어린이콘텐츠\');}catch(_e){}');">어린이콘텐츠</a></li>
+                <li><a href="/homes/eduList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인교육체험\');}catch(_e){}');">온라인 교육ㆍ체험</a></li>
+                <li><a href="/homes/bookList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인도서체육\');}catch(_e){}');">온라인 도서ㆍ체육</a></li>
+                <li><a href="/homes/vrList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^VR콘텐츠\');}catch(_e){}');">VR콘텐츠</a></li>
+
+            </ul>
+        </div>
+
+        <div id="nav01" class="cont">
+            <h3>문화체험</h3>
+            <ul class="nav_list">
+                <li><a href="/perform/experienceList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시\');}catch(_e){}');">공연ㆍ전시</a>
+                    <ul>
+                        <li><a href="/perform/experienceList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시\');}catch(_e){}');">전체</a></li>
+                        <li><a href="/perform/performList.do?cPage=1&genre=2" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^음악/콘서트\');}catch(_e){}');">음악/콘서트</a></li>
+                        <li><a href="/perform/performList.do?cPage=1&genre=8" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^뮤지컬/오페라\');}catch(_e){}');">뮤지컬/오페라</a></li>
+                        <li><a href="/perform/performList.do?cPage=1&genre=1" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^연극\');}catch(_e){}');">연극</a></li>
+                        <li><a href="/perform/performList.do?cPage=1&genre=4" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^국악\');}catch(_e){}');">국악</a></li>
+                        <li><a href="/perform/performList.do?cPage=1&genre=5" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^무용/발레\');}catch(_e){}');">무용/발레</a></li>
+                        <li><a href="/perform/performList.do?cPage=1&genre=9" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^아동/가족\');}catch(_e){}');">아동/가족</a></li>
+                        <li><a href="/perform/performList.do?cPage=1&genre=6" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^전시\');}catch(_e){}');">전시</a></li>
+                        <li><a href="/perform/performList.do?cPage=1&genre=7" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^기타\');}catch(_e){}');">기타</a></li>
+                    </ul>
+                </li>
+                <li><a href="/festival/festivalList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^행사·축제\');}catch(_e){}');">행사ㆍ축제</a></li>
+                <li><a href="/edu/educationList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^교육·체험\');}catch(_e){}');">교육ㆍ체험</a></li>
+                <li><a href="/perform/relayList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화릴레이티켓\');}catch(_e){}');">문화릴레이티켓</a></li>
+                <li><a href="/space/facility.do?sido=서울&gugun=종로구" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체\');}catch(_e){}');">문화공간ㆍ단체</a>
+                    <ul>
+                        <li><a href="/space/facility.do?sido=서울&gugun=종로구" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체^문화시설\');}catch(_e){}');">문화시설</a></li>
+                        <li><a href="/space/athletics.do?sido=서울&gugun=종로구" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체^체육시설\');}catch(_e){}');">체육시설</a></li>
+                        <li><a href="/space/bookStore.do?sido=서울특별시&gugun=종로구" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체^서점\');}catch(_e){}');">서점</a></li>
+                        <li><a href="/space/organization.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체^문화예술단체\');}catch(_e){}');">문화예술단체</a></li>
+                    </ul>
+                </li>
+                <li><a href="/servicemap/servicemap.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화생활네비게이션\');}catch(_e){}');">문화생활네비게이션</a></li>
+            </ul>
+        </div>
+        <div id="nav02" class="cont">
+            <h3>문화공감</h3>
+            <ul class="nav_list">
+                <li><a href="/culture/themeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^공감리포트\');}catch(_e){}');">공감리포트</a></li>
+                <li><a href="/mov/culturePdList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상\');}catch(_e){}');">문화영상</a>
+                    <ul>
+                        <li><a href="/mov/culturePdList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^국내외문화영상\');}catch(_e){}');">국내외문화영상</a></li>
+                        <li><a href="/mov/tvReviewList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^문화TV\');}catch(_e){}');">문화TV</a></li>
+                        <li><a href="/mov/culture100List.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^한국문화100\');}catch(_e){}');">한국문화100</a></li>
+                        <li><a href="/mov/job30List.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^문화직업30\');}catch(_e){}');">문화직업30</a></li>
+                        <li><a href="/mov/forecastList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^문화예보\');}catch(_e){}');">문화예보</a></li>
+                        <li><a href="/mov/publicMovList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^기관별영상\');}catch(_e){}');">기관별영상</a></li>
+                        <li><a href="/mov/humanLectureList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^인문학강연\');}catch(_e){}');">인문학강연</a></li>
+                    </ul>
+                </li>
+                <li><a href="/magazine/cardnewsList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^카드뉴스\');}catch(_e){}');">카드뉴스</a></li>
+                <li><a href="/magazine/webzine.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^웹진\');}catch(_e){}');">웹진</a></li>
+               <!-- <li><a href="/magazine/relativeList.do">관련기관 칼럼</a></li> -->
+                <li><a href="/board/list.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화마루 게시판\');}catch(_e){}');">문화마루 게시판</a></li>
+                <li><a href="/culturedata/dataAnalyze.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화정보분석\');}catch(_e){}');">문화정보분석</a></li>
+            </ul>
+        </div>
+        <div id="nav03" class="cont">
+            <h3>문화지식</h3>
+            <ul class="nav_list">
+                <li><a href="/tradition/designPatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인\');}catch(_e){}');">전통문양 디자인</a>
+                    <ul>
+                        <li><a href="/tradition/designPatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^디자인 문양\');}catch(_e){}');">디자인 문양</a></li>
+                        <li><a href="/tradition/shapeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^형태별 문양\');}catch(_e){}');">형태별 문양</a></li>
+                        <li><a href="/tradition/useList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^용도별 문양\');}catch(_e){}');">용도별 문양</a></li>
+                        <li><a href="/tradition/usePatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^활용 디자인\');}catch(_e){}');">활용 디자인</a></li>
+                        <li><a href="/tradition/useDesignList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^전통문양활용\');}catch(_e){}');">전통문양활용</a></li>
+                        <li><a href="/tradition/guide.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^활용 가이드\');}catch(_e){}');">활용 가이드</a></li>
+                        <li><a href="/tradition/pattern.do?type=A" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^문양의 이해\');}catch(_e){}');">문양의 이해</a></li>
+                        <li><a href="/tradition/guideB02.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^전통문양 사용신청\');}catch(_e){}');">전통문양 사용신청</a></li>
+                    </ul>
+                </li>
+                <li><a href="/industry/content3dList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^3D프린팅콘텐츠\');}catch(_e){}');">3D프린팅콘텐츠</a></li>
+                <li><a href="/knowledge/encyclopediaList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과\');}catch(_e){}');">예술지식백과</a>
+                    <ul>
+                        <li><a href="/knowledge/encyclopediaList.do?code_value=A" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^연극\');}catch(_e){}');">연극</a></li>
+                        <li><a href="/knowledge/encyclopediaList.do?code_value=B" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^음악\');}catch(_e){}');">음악</a></li>
+                        <li><a href="/knowledge/encyclopediaList.do?code_value=C" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^무용\');}catch(_e){}');">무용</a></li>
+                        <li><a href="/knowledge/encyclopediaList.do?code_value=D" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^미술\');}catch(_e){}');">미술</a></li>
+                        <li><a href="/knowledge/encyclopediaList.do?code_value=G" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^영상\');}catch(_e){}');">영상</a></li>
+                        <li><a href="/knowledge/encyclopediaList.do?code_value=H" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^문학\');}catch(_e){}');">문학</a></li>
+                        <li><a href="/knowledge/encyclopediaList.do?code_value=E" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^건축\');}catch(_e){}');">건축</a></li>
+                        <li><a href="/knowledge/encyclopediaList.do?code_value=J" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^축제ㆍ문화\');}catch(_e){}');">축제ㆍ문화</a></li>
+                        <li><a href="/knowledge/encyclopediaDictionary.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^예술용어사전\');}catch(_e){}');">예술용어사전</a></li>
+                    </ul>
+                </li>
+                <!--<li><a href="/knowledge/bookList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^추천도서\');}catch(_e){}');">추천도서</a>
+                    <ul>
+                        <li><a href="/knowledge/bookList.do?jobGroupId=GRP59&jobId=JOB1203">이달의읽을만한책</a></li>
+                        <li><a href="/knowledge/bookList.do?jobGroupId=GRP59&jobId=JOB1204">청소년 권장도서</a></li>
+                        <li><a href="/knowledge/bookList.do?jobGroupId=GRP51&jobId=JOB293">어린이 추천도서</a></li>
+                        <li><a href="/knowledge/bookList.do?jobGroupId=GRP28&jobId=JOB1212" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^추천도서^사서추천도서\');}catch(_e){}');">사서추천도서</a></li>
+                    </ul>
+                </li>-->
+                <li><a href="/knowledge/reportListNew.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^연구교육자료\');}catch(_e){}');">연구교육자료</a></li>
+                <li><a href="/industry/apiGuideA.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^문화포털 API\');}catch(_e){}');">문화포털 API</a></li>
+                <!--<li><a href="/topic/search/searchList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^문화표제어\');}catch(_e){}');">문화표제어</a></li>-->
+            </ul>
+        </div>
+        <div id="nav04" class="cont">
+            <h3>문화알리미</h3>
+            <ul class="nav_list">
+                <li><a href="/event/invitationList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이벤트\');}catch(_e){}');">이벤트</a>
+                    <ul>
+                        <li><a href="/event/invitationList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이벤트^초대이벤트\');}catch(_e){}');">초대이벤트</a></li>
+                        <li><a href="/event/portalEventList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이벤트^문화포털이벤트\');}catch(_e){}');">문화포털 이벤트</a></li>
+                        <li><a href="/event/winnerList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이벤트^당첨자 발표\');}catch(_e){}');">당첨자 발표</a></li>
+                    </ul>
+                </li>
+                <li><a href="/news/recruitList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^채용·자원봉사모집\');}catch(_e){}');">채용ㆍ자원봉사모집</a>
+                    <ul>
+                        <li><a href="/news/recruitList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^채용·자원봉사모집^연계기관채용\');}catch(_e){}');">연계기관채용</a></li>
+                        <li><a href="/cultureplan/cultureList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^채용·자원봉사모집^자원봉사 모집\');}catch(_e){}');">자원봉사 모집</a></li>
+                    </ul>
+                </li>
+                <li><a href="/cultureplan/cultureSupport.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^정책뉴스ㆍ지원사업\');}catch(_e){}');">정책뉴스ㆍ지원사업</a>
+                    <ul>
+                        <li><a href="/news/newsList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^정책뉴스ㆍ지원사업^정책뉴스\');}catch(_e){}');">정책뉴스</a></li>
+                        <li><a href="/cultureplan/cultureSupport.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^정책뉴스ㆍ지원사업^지원사업\');}catch(_e){}');">지원사업</a></li>
+                    </ul>
+                </li>
+                <li><a href="/news/noticeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^공지사항\');}catch(_e){}');">공지사항</a></li>
+                <li><a href="/info/aboutA.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이용안내\');}catch(_e){}');">이용안내</a>
+                    <ul>
+                        <li><a href="/info/aboutA.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이용안내^사이트소개\');}catch(_e){}');">사이트소개</a></li>
+                        <li><a href="/info/faq.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이용안내^자주찾는질문\');}catch(_e){}');">자주찾는질문</a></li>
+                        <li><a href="/info/inquireList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이용안내^서비스문의\');}catch(_e){}');">서비스문의</a></li>
+                    </ul>
+                </li>
+                <li><a href="/mypage/mypage.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지\');}catch(_e){}');">마이페이지</a>
+                    <ul>
+                        <li><a href="/mypage/information.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^개인정보수정\');}catch(_e){}');">개인정보수정</a></li>
+                        <li><a href="/mypage/document.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^나의 게시물\');}catch(_e){}');">나의 게시물</a></li>
+                        <li><a href="/mypage/event.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^나의 이벤트\');}catch(_e){}');">나의 이벤트</a></li>
+                        <li><a href="/mypage/ticket.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^나의 예매내역\');}catch(_e){}');">나의 예매내역</a></li>
+                        <li><a href="/mypage/pattern.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^전통문양신청내역\');}catch(_e){}');">전통문양신청내역</a></li>
+                        <li><a href="/mypage/mypage.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^회원탈퇴\');}catch(_e){}');">회원탈퇴</a></li>
+                    </ul>
+                </li>
+                <li><a href="/perform/reviewList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^문화후기\');}catch(_e){}');">문화후기</a></li>
+                <li><a href="#">바로가기</a>
+                    <ul>
+                        <li><a href="/english.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^바로가기^English\');}catch(_e){}');">English</a></li>
+                        <li><a href="/cultureplan/cardList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^바로가기^문화융성카드\');}catch(_e){}');">문화융성카드</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="nav07" class="cont">
+            <h3>문화데이터개방</h3>
+            <ul class="nav_list">
+                <li><a href="/culturedata/cultureSqApi.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방^공공문화정보 오픈 API\');}catch(_e){}');">공공문화정보 오픈 API</a></li>
+                <li><a href="/culturedata/shareInfoNoti.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방^공지사항\');}catch(_e){}');">공지사항</a></li>
+                <li><a href="/culturedata/shareInfoQna.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방^참여광장\');}catch(_e){}');">참여광장</a></li>
+            </ul>
+        </div>
+        <div id="nav05" class="cont">
+            <h3>회원가입</h3>
+            <ul class="nav_list">
+                <li><a href="/member/register.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^회원가입^회원가입\');}catch(_e){}');">회원가입</a></li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript" src="/assets/js/URI.js?v=20200218170000"></script>
+    <script type="text/javascript">
+        var uri = new URI();
+        var uriDirectory = uri.directory();
+        uriDirectory = uriDirectory.replace(/\//g, '');
+
+        var uriPathname = uri.pathname();
+
+        var eqVal = 0;
+
+        if(uriDirectory == 'cultureissue' || uriDirectory == 'mov' || uriDirectory == 'magazine' ){
+            eqVal = 1;
+        }
+
+        if(uriDirectory == 'tradition' || uriDirectory == 'industry' || uriDirectory == 'knowledge' ){
+            eqVal = 2;
+        }
+
+        if(uriDirectory == 'event' || uriDirectory == 'news' || uriDirectory == 'cultureplan' || uriDirectory == 'info' || uriDirectory == 'mypage' || uriDirectory == 'english'){
+            eqVal = 3;
+        }
+
+        if(uriDirectory == 'member'){
+            eqVal = 4;
+        }
+
+        if(uriPathname == '/perform/reviewList.do' || uriPathname == '/perform/reviewView.do'){
+            eqVal = 3;
+        }
+
+        $('.tabs').next().children('.cont').stop(true,true).hide().eq(eqVal).show();
+        $('.tabs').children('li').eq(eqVal).addClass('on').stop(true,true).show();
+    </script>
+</nav>
+</div>
+        <div id="header">
+    <div class="header_inner">
+        <h1><a href="/" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화포털\');}catch(_e){}');">문화포털</a></h1>
+
+        <!-- search -->
+        <form id="searchForm" name="searchForm" method="get" action="/searchTotal.do" onsubmit="return false;">
+            <fieldset>
+                <a href="#search" class="total_search">검색</a><!-- mobile -->
+                <div class="search_wrap">
+                    <label for="searchTerm" class="hide">검색어</label>
+                    <input type="text" class="keyword" title="검색어를 입력하세요."
+                           id="searchTerm" name="searchTerm" value=""
+                           onkeypress="javascript:if(event.keyCode==13){requestSearch();return false;}"
+                           onfocus="return dq_setTextbox('0',event);" onmousedown="dq_setTextbox('1',event);" onkeydown="dq_setTextbox('1',event)" >
+                    <script type="text/javascript" src="/assets/js/search/dqAutoComplete.js?v=20200218170000"></script>
+                    <script type="text/javascript" src="/assets/js/search/search.js?v=20200218170000"></script>
+                    <div class="auto" id="dqAuto" onmouseover="dq_setMouseon();" onmouseout="dq_setMouseoff();" style="display:none;"></div>
+                    <button type="button" class="btn_search" onclick="requestSearch();return false;"  title="검색" >검색</button>
+                </div>
+            </fieldset>
+        </form>
+        <!-- //search -->
+
+        <!-- top banner -->
+        <div class="top_banner ieChe01">
+            <ul class="top_slider ieChe0">
+                <!-- 메인 디비작업 -->
+                <li class="ieChe1">
+                    <a href="https://www.culture.go.kr/ticket/main" target="_blank" title="문화 N 티켓 티켓 예매 발권 서비스(새창)"><span class="thumb"><img src="/assets/images/tempMain/t13.jpg" alt="문화 N 티켓 티켓 예매 발권 서비스" /></span></a>
+                </li>
+                <li class="ieChe2">
+                    <a  href="https://www.culture.go.kr/deduction/" target="_blank" title="문화비 소득공제 문화비 사용분 소득공제 (새창)"><span class="thumb"><img src="/assets/images/tempMain/t12.jpg" alt="문화비 소득공제 문화비 사용분 소득공제" /></span></a>
+                </li>
+            </ul>
+            <div class="ctrl_wrap ieChe3">
+                <button type="button" class="btn_prev" title="이전">이전</button>
+                <button type="button" class="btn_pause" title="정지">정지</button>
+                <button type="button" class="btn_play" title="재생">재생</button>
+                <button type="button" class="btn_next" title="다음">다음</button>
+            </div>
+        </div>
+        <script>
+            $(function () {
+
+                var stxt = $('.coorArea li.on').text();
+                $('.slider-title').text(stxt);
+                $('.coorArea li').click(function(){
+                    if($(this).hasClass('on')){
+                        $('.slider-title').text($(this).text());
+                    }
+                });
+
+                var agent = navigator.userAgent.toLowerCase();
+
+                if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1) ) {
+                    $('.ieChe01').attr('tabindex', '');
+                    $('.ieChe0').attr('tabindex', '0');
+                    $('.ieChe1').attr('tabindex', '0');
+                    $('.ieChe2').attr('tabindex', '');
+                    $('.ieChe3').attr('tabindex', '');
+                }else{
+                    $('.ieChe01').attr('tabindex', '-1');
+                    $('.ieChe0').attr('tabindex', '-1');
+                    $('.ieChe1').attr('tabindex', '-1');
+                    $('.ieChe2').attr('tabindex', '-1');
+                    $('.ieChe3').attr('tabindex', '-1');
+                }
+            })
+
+            var $topSlider = $('.top_slider');
+            $topSlider.slick({
+                dots: false,
+                arrows: false,
+                speed: 500,
+                autoplay: true,
+                autoplaySpeed: 3500,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                onSliderLoad: function(){
+                    $(".slick-track").attr("tabIndex","-1");
+                    $(".slick-list").attr("tabIndex","-1");
+                    alert('aa');
+                },
+                onSlideAfter: function() {
+                    $(".top_slider").children("li").each(function () {
+
+                        if ($(this).attr("aria-hidden") == "false") {
+
+                            $(this).find("a").attr("tabIndex", "0");
+
+                        } else {
+
+                            $(this).find("a").attr("tabIndex", "-1");
+
+                        }
+
+                    });
+                }
+            });
+            $('.top_banner .ctrl_wrap .btn_prev').click(function() {
+                $topSlider.slick('slickPrev');
+            });
+            $('.top_banner .ctrl_wrap .btn_next').click(function() {
+                $topSlider.slick('slickNext');
+            });
+            $('.top_banner .ctrl_wrap .btn_pause').click(function() {
+                $topSlider.slick('slickPause');
+                $(this).hide().next('.btn_play').show().focus();
+            });
+            $('.top_banner .ctrl_wrap .btn_play').click(function() {
+                $topSlider.slick('slickPlay');
+                $(this).hide().prev('.btn_pause').show().focus();
+            });
+        </script>
+        <!-- //top banner -->
+        <a href="#aside_open" class="aside_trigger">전체메뉴</a><!-- mobile -->
+    </div>
+    <div class="gnb_wrap">
+        <div class="gnb_inner">
+            <a href="#menu" class="all_menu">
+                <span></span><span></span><span></span>
+                <em class="hide">전체메뉴 펼쳐보기</em>
+            </a>
+            <!-- allmenu -->
+            <div class="allmenu_wrap">
+                <ul>
+                    <li>
+                        <h2 class="h205">온라인 문화체험</h2>
+                        <ul>
+                            <li class="depth"><a href="/homes/showList.do" class="test" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">온라인 공연ㆍ전시</a>
+                                <div class="allist">
+                                    <a href="/homes/showList.do?genre=1075" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">뮤지컬</a>
+                                    <a href="/homes/showList.do?genre=1076" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">콘서트</a>
+                                    <a href="/homes/showList.do?genre=1077" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">연극</a>
+                                    <a href="/homes/showList.do?genre=1078" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">클래식</a>
+                                    <a href="/homes/showList.do?genre=1079" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">무용</a>
+                                    <a href="/homes/showList.do?genre=1080" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">스포츠</a>
+                                    <a href="/homes/showList.do?genre=1081" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">전시/행사</a>
+                                    <a href="/homes/showList.do?genre=1082" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">국악</a>
+                                </div>
+                            </li>
+                            <li><a href="/homes/childList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^어린이콘텐츠\');}catch(_e){}');">어린이콘텐츠</a></li>
+                            <li><a href="/homes/eduList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인교육체험\');}catch(_e){}');">온라인 교육ㆍ체험</a></li>
+                            <li><a href="/homes/bookList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인도서체육\');}catch(_e){}');">온라인 도서ㆍ체육</a></li>
+                            <li><a href="/homes/vrList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^VR콘텐츠\');}catch(_e){}');">VR콘텐츠</a></li>
+                        </ul>
+                        <h2 class="h201">문화체험</h2>
+                        <ul>
+                            <li class="depth"><a href="/perform/experienceList.do" class="test" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시\');}catch(_e){}');">공연ㆍ전시</a>
+                                <div class="allist">
+                                    <a href="/perform/performList.do?cPage=1&genre=2" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^음악/콘서트\');}catch(_e){}');">음악/콘서트</a>
+                                    <a href="/perform/performList.do?cPage=1&genre=8" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^뮤지컬/오페라\');}catch(_e){}');">뮤지컬/오페라</a>
+                                    <a href="/perform/performList.do?cPage=1&genre=1" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^연극\');}catch(_e){}');">연극</a>
+                                    <a href="/perform/performList.do?cPage=1&genre=4" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^국악\');}catch(_e){}');">국악</a>
+                                    <a href="/perform/performList.do?cPage=1&genre=5" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^무용/발레\');}catch(_e){}');">무용/발레</a>
+                                    <a href="/perform/performList.do?cPage=1&genre=9" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^아동/가족\');}catch(_e){}');">아동/가족</a>
+                                    <a href="/perform/performList.do?cPage=1&genre=6" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^전시\');}catch(_e){}');">전시</a>
+                                    <a href="/perform/performList.do?cPage=1&genre=7" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시^기타\');}catch(_e){}');">기타</a>
+                                </div>
+                            </li>
+                            <li><a href="/festival/festivalList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^행사·축제\');}catch(_e){}');">행사ㆍ축제</a></li>
+                            <li><a href="/edu/educationList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^교육·체험\');}catch(_e){}');">교육ㆍ체험</a></li>
+                            <li><a href="/perform/relayList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화릴레이티켓\');}catch(_e){}');">문화릴레이티켓</a></li>
+                            <li class="depth"><a href="/space/facility.do?sido=서울&gugun=종로구" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체\');}catch(_e){}');">문화공간ㆍ단체</a>
+                                <div class="allist">
+                                    <a href="/space/facility.do?sido=서울&gugun=종로구" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체^문화시설\');}catch(_e){}');">문화시설</a>
+                                    <a href="/space/athletics.do?sido=서울&gugun=종로구" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체^체육시설\');}catch(_e){}');">체육시설</a>
+                                    <a href="/space/bookStore.do?sido=서울특별시&gugun=종로구" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체^서점\');}catch(_e){}');">서점</a>
+                                    <a href="/space/organization.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체^문화예술단체\');}catch(_e){}');">문화예술단체</a>
+                                    <a href="/space/deduction.do?sido=서울특별시&gugun=종로구" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간ㆍ단체^문화비 소득공제 사업자\');}catch(_e){}');">문화비 소득공제<br /> 사업자</a>
+                                </div>
+                            </li>
+                            <li><a href="/servicemap/servicemap.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화생활네비게이션\');}catch(_e){}');">문화생활네비게이션</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2 class="h202">문화공감</h2>
+                        <ul>
+                            <li><a href="/culture/themeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^공감리포트\');}catch(_e){}');">공감리포트</a></li>
+                            <li class="depth"><a href="/mov/culturePdList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상\');}catch(_e){}');">문화영상</a>
+                                <div class="allist">
+                                    <a href="/mov/culturePdList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^국내외문화영상\');}catch(_e){}');">국내외문화영상</a>
+                                    <a href="/mov/tvReviewList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^문화TV\');}catch(_e){}');">문화TV</a>
+                                    <a href="/mov/culture100List.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^한국문화100\');}catch(_e){}');">한국문화100</a>
+                                    <a href="/mov/job30List.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^문화직업30\');}catch(_e){}');">문화직업30</a>
+                                    <a href="/mov/forecastList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^문화예보\');}catch(_e){}');">문화예보</a>
+                                    <a href="/mov/publicMovList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^기관별영상\');}catch(_e){}');">기관별영상</a>
+                                    <a href="/mov/humanLectureList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상^인문학강연\');}catch(_e){}');">인문학강연</a>
+                                </div>
+                            </li>
+                            <li><a href="/magazine/cardnewsList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^카드뉴스\');}catch(_e){}');">카드뉴스</a></li>
+                            <li><a href="/magazine/webzine.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^웹진\');}catch(_e){}');">웹진</a></li>
+                            <!--<li><a href="/magazine/relativeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^관련기관 칼럼\');}catch(_e){}');">관련기관 칼럼</a></li>-->
+                            <li><a href="/info/sns.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화SNS지도\');}catch(_e){}');">문화SNS지도</a></li>
+                            <li><a href="/board/list.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화마루 게시판\');}catch(_e){}');">문화마루 게시판</a></li>
+                            <li><a href="/culturedata/dataAnalyze.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화정보분석\');}catch(_e){}');">문화정보분석</a></li>
+                        </ul>
+                        <h2 class="h203">문화지식</h2>
+                        <ul>
+                            <li class="depth"><a href="/tradition/designPatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인\');}catch(_e){}');">전통문양 디자인</a>
+                                <div class="allist">
+                                    <a href="/tradition/designPatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^디자인 문양\');}catch(_e){}');">디자인 문양</a>
+                                    <a href="/tradition/shapeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^형태별 문양\');}catch(_e){}');">형태별 문양</a>
+                                    <a href="/tradition/useList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^용도별 문양\');}catch(_e){}');">용도별 문양</a>
+                                    <a href="/tradition/usePatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^활용 디자인\');}catch(_e){}');">활용 디자인</a>
+                                    <a href="/tradition/useDesignList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^전통문양활용\');}catch(_e){}');">전통문양활용</a>
+                                    <a href="/tradition/guide.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^활용 가이드\');}catch(_e){}');">활용 가이드</a>
+                                    <a href="/tradition/pattern.do?type=A" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^문양의 이해\');}catch(_e){}');">문양의 이해</a>
+                                    <a href="/tradition/guideB02.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인^전통문양 사용신청\');}catch(_e){}');">전통문양 사용신청</a>
+                                </div>
+                            </li>
+                            <li><a href="/industry/content3dList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^3D프린팅콘텐츠\');}catch(_e){}');">3D프린팅콘텐츠</a></li>
+                            <li class="depth"><a href="/knowledge/encyclopediaList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과\');}catch(_e){}');">예술지식백과</a>
+                                <div class="allist">
+                                    <a href="/knowledge/encyclopediaList.do?code_value=A" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^연극\');}catch(_e){}');">연극</a>
+                                    <a href="/knowledge/encyclopediaList.do?code_value=B" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^음악\');}catch(_e){}');">음악</a>
+                                    <a href="/knowledge/encyclopediaList.do?code_value=C" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^무용\');}catch(_e){}');">무용</a>
+                                    <a href="/knowledge/encyclopediaList.do?code_value=D" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^미술\');}catch(_e){}');">미술</a>
+                                    <a href="/knowledge/encyclopediaList.do?code_value=G" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^영상\');}catch(_e){}');">영상</a>
+                                    <a href="/knowledge/encyclopediaList.do?code_value=H" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^문학\');}catch(_e){}');">문학</a>
+                                    <a href="/knowledge/encyclopediaList.do?code_value=E" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^건축\');}catch(_e){}');">건축</a>
+                                    <a href="/knowledge/encyclopediaList.do?code_value=J" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^축제ㆍ문화\');}catch(_e){}');">축제ㆍ문화</a>
+                                    <a href="/knowledge/encyclopediaDictionary.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과^예술용어사전\');}catch(_e){}');">예술용어사전</a>
+                                </div>
+                            </li>
+                            <!--<li class="depth"><a href="/knowledge/bookList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^추천도서\');}catch(_e){}');">추천도서</a>
+                                <div class="allist">
+                                    <a href="/knowledge/bookList.do?jobGroupId=GRP59&jobId=JOB1203">이달의읽을만한책</a>
+                                    <a href="/knowledge/bookList.do?jobGroupId=GRP59&jobId=JOB1204">청소년 권장도서</a>
+                                    <a href="/knowledge/bookList.do?jobGroupId=GRP51&jobId=JOB293">어린이 추천도서</a>
+                                    <a href="/knowledge/bookList.do?jobGroupId=GRP28&jobId=JOB1212" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^추천도서^사서추천도서\');}catch(_e){}');">사서추천도서</a>
+                                </div>
+                            </li>-->
+                            <li><a href="/knowledge/reportListNew.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^연구교육자료\');}catch(_e){}');">연구교육자료</a></li>
+                            <li><a href="/industry/apiGuideA.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^문화포털 API\');}catch(_e){}');">문화포털 API</a></li>
+                           <!-- <li><a href="/topic/search/searchList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^문화표제어\');}catch(_e){}');">문화표제어</a></li>-->
+                        </ul>
+                    </li>
+                    <li>
+                        <h2 class="h204">문화알리미</h2>
+                        <ul>
+                            <li class="depth"><a href="/event/invitationList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이벤트\');}catch(_e){}');">이벤트</a>
+                                <div class="allist">
+                                    <a href="/event/invitationList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이벤트^초대이벤트\');}catch(_e){}');">초대이벤트</a>
+                                    <a href="/event/portalEventList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이벤트^문화포털이벤트\');}catch(_e){}');">문화포털 이벤트</a>
+                                    <a href="/event/winnerList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이벤트^당첨자 발표\');}catch(_e){}');">당첨자 발표</a>
+                                </div>
+                            </li>
+                            <li class="depth"><a href="/news/recruitList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^채용·자원봉사모집\');}catch(_e){}');">채용ㆍ자원봉사모집</a>
+                                <div class="allist">
+                                    <a href="/news/recruitList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^채용·자원봉사모집^연계기관채용\');}catch(_e){}');">연계기관채용</a>
+                                    <a href="/cultureplan/cultureList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^채용·자원봉사모집^자원봉사 모집\');}catch(_e){}');">자원봉사 모집</a>
+                                </div>
+                            </li>
+                            <li class="depth"><a href="/news/newsList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^정책뉴스ㆍ지원사업\');}catch(_e){}');">정책뉴스ㆍ지원사업</a>
+                                <div class="allist">
+                                    <a href="/news/newsList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^정책뉴스ㆍ지원사업^정책뉴스\');}catch(_e){}');">정책뉴스</a>
+                                    <a href="/cultureplan/cultureSupport.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^정책뉴스ㆍ지원사업^지원사업\');}catch(_e){}');">지원사업</a>
+                                </div>
+                            </li>
+                            <li><a href="/news/noticeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^공지사항\');}catch(_e){}');">공지사항</a></li>
+                            <li class="depth"><a href="/info/aboutA.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이용안내\');}catch(_e){}');">이용안내</a>
+                                <div class="allist">
+                                    <a href="/info/aboutA.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이용안내^사이트소개\');}catch(_e){}');">사이트소개</a>
+                                    <a href="/info/faq.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이용안내^자주찾는질문\');}catch(_e){}');">자주찾는질문</a>
+                                    <a href="/info/inquireList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이용안내^서비스문의\');}catch(_e){}');">서비스문의</a>
+                                </div>
+                            </li>
+                            <li class="depth"><a href="/mypage/mypage.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지\');}catch(_e){}');">마이페이지</a>
+                                <div class="allist">
+                                    <a href="/mypage/information.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^개인정보수정\');}catch(_e){}');">개인정보수정</a>
+                                    <a href="/mypage/document.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^나의 게시물\');}catch(_e){}');">나의 게시물</a>
+                                    <a href="/mypage/event.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^나의 이벤트\');}catch(_e){}');">나의 이벤트</a>
+                                    <a href="/mypage/ticket.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^나의 예매내역\');}catch(_e){}');">나의 예매내역</a>
+                                    <a href="/mypage/pattern.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^전통문양신청내역\');}catch(_e){}');">전통문양신청내역</a>
+                                    <a href="/mypage/mypage.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지^회원탈퇴\');}catch(_e){}');">회원탈퇴</a>
+                                </div>
+                            </li>
+                            <li><a href="/perform/reviewList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^문화후기\');}catch(_e){}');">문화후기</a></li>
+                            <li class="depth"><a href="#">바로가기</a>
+                                <div class="allist" >
+                                    <a href="/english.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^바로가기^English\');}catch(_e){}');">English</a>
+                                    <a href="/cultureplan/cardList.do" id="allistLast" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^바로가기^문화융성카드\');}catch(_e){}');">문화융성카드</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h2 class="h206">문화데이터개방</h2>
+                        <ul>
+                            <li><a href="/culturedata/cultureSqApi.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방^공공문화정보 오픈 API\');}catch(_e){}');">공공문화정보 오픈 API</a></li>
+                            <li><a href="/culturedata/shareInfoNoti.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방^공지사항\');}catch(_e){}');">공지사항</a></li>
+                            <li><a href="/culturedata/shareInfoQna.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방^참여광장\');}catch(_e){}');">참여광장</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- //allmenu -->
+            <!-- gnb -->
+            <div id="gnb">
+                <ul>
+                    <li >
+                        <a href="/homes/homesMainList.do" id="first_meun" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^집콕메인\');}catch(_e){}');">온라인문화체험</a>
+                        <div>
+                            <ul>
+                                <li><a href="/homes/showList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인공연전시\');}catch(_e){}');">온라인 공연·전시</a></li>
+                                <li><a href="/homes/childList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^어린이콘텐츠\');}catch(_e){}');">어린이콘텐츠</a></li>
+                                <li><a href="/homes/eduList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인교육체험\');}catch(_e){}');">온라인 교육·체험</a></li>
+                                <li><a href="/homes/bookList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^온라인도서체육\');}catch(_e){}');">온라인 도서·체육</a></li>
+                                <li><a href="/homes/vrList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^온라인문화체험^VR콘텐츠\');}catch(_e){}');">VR콘텐츠</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li >
+                        <a href="/perform/experienceList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험\');}catch(_e){}');">문화체험</a>
+                        <div>
+                            <ul>
+                                <li><a href="/perform/experienceList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^공연ㆍ전시\');}catch(_e){}');">공연·전시</a></li>
+                                <li><a href="/festival/festivalList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^행사·축제\');}catch(_e){}');">행사·축제</a></li>
+                                <li><a href="/edu/educationList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^교육·체험\');}catch(_e){}');">교육·체험</a></li>
+                                <li><a href="/perform/relayList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화릴레이티켓\');}catch(_e){}');">문화릴레이티켓</a></li>
+                                <li><a href="/space/facility.do?sido=서울&gugun=종로구&facilityCode=&searchKeyword=" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화공간·단체\');}catch(_e){}');">문화공간·단체</a></li>
+                                <li><a href="/servicemap/servicemap.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화체험^문화생활네비게이션\');}catch(_e){}');">문화생활네비게이션</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/culture/themeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감\');}catch(_e){}');">문화공감</a>
+                        <div>
+                            <ul>
+                                <li><a href="/culture/themeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^공감리포트\');}catch(_e){}');">공감리포트</a></li>
+                                <li><a href="/mov/culturePdList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화영상\');}catch(_e){}');">문화영상</a></li>
+                                <li><a href="/magazine/cardnewsList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^카드뉴스\');}catch(_e){}');">카드뉴스</a></li>
+                                <li><a href="/magazine/webzine.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^웹진\');}catch(_e){}');">웹진</a></li>
+                                <!-- <li><a href="/magazine/relativeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^관련기관 칼럼\');}catch(_e){}');">관련기관 칼럼</a></li> -->
+                                <li><a href="/info/sns.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화 SNS 지도\');}catch(_e){}');">문화 SNS 지도</a></li>
+                                <li><a href="/culturedata/dataAnalyze.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화공감^문화정보분석\');}catch(_e){}');">문화정보분석</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/tradition/designPatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식\');}catch(_e){}');">문화지식</a>
+                        <div>
+                            <ul>
+                                <li><a href="/tradition/designPatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인\');}catch(_e){}');">전통문양디자인</a></li>
+                                <li><a href="/industry/content3dList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^3D프린팅콘텐츠\');}catch(_e){}');">3D 프린팅 콘텐츠</a></li>
+                                <li><a href="/knowledge/encyclopediaList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과\');}catch(_e){}');">예술지식백과</a></li>
+                                <!--<li><a href="/knowledge/bookList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^추천도서\');}catch(_e){}');">추천도서</a></li>-->
+                                <li><a href="/knowledge/reportListNew.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^연구교육자료\');}catch(_e){}');">연구교육자료</a></li>
+                                <li><a href="/industry/apiGuideA.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^문화포털 API\');}catch(_e){}');">문화포털 API</a></li>
+                                <!--<li><a href="/topic/search/searchList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^문화표제어\');}catch(_e){}');">문화표제어</a></li>-->
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="/event/invitationList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미\');}catch(_e){}');">문화알리미</a>
+                        <div>
+                            <ul>
+                                <li><a href="/event/invitationList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이벤트\');}catch(_e){}');">이벤트</a></li>
+                                <li><a href="/news/recruitList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^채용·자원봉사모집\');}catch(_e){}');">채용·자원봉사 모집</a></li>
+                                <li><a href="/news/newsList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^정책뉴스ㆍ지원사업\');}catch(_e){}');">정책뉴스ㆍ지원사업</a></li>
+                                <li><a href="/news/noticeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^공지사항\');}catch(_e){}');">공지사항</a></li>
+                                <li><a href="/info/aboutA.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^이용안내\');}catch(_e){}');">이용안내</a></li>
+                                <li><a href="/mypage/mypage.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화알리미^마이페이지\');}catch(_e){}');">마이페이지</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li id="last_gnb">
+                        <a href="/culturedata/cultureSqApi.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방\');}catch(_e){}');">문화데이터개방</a>
+                        <div>
+                            <ul>
+                                <li><a href="/culturedata/cultureSqApi.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방^공공문화정보 오픈 API\');}catch(_e){}');">공공문화정보 오픈 API</a></li>
+                                <li><a href="/culturedata/shareInfoNoti.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방^공지사항\');}catch(_e){}');">공지사항</a></li>
+                                <li><a href="/culturedata/shareInfoQna.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화데이터개방^참여광장\');}catch(_e){}');">참여광장</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+
+                
+
+                <div class="util_menu">
+                    
+                        
+                        <a href="/sso/login.do" class="login" title="로그인">로그인</a>
+                    
+                </div>
+            </div>
+            <!-- //gnb -->
+        </div>
+        <span class="gnb_overlay"></span>
+    </div><!-- //gnb_wrap -->
+</div>
+        <!-- container -->
+        <div id="container">
+            <!-- aside_menu -->
+            <div class="aside_lnb_wrap">
+            <a href="#aside" class="btn_aside"  id="sideMenu"><span>메뉴펼쳐보기</span></a>
+            <div id="aside_lnb">
+                <ul class="lnb_list">
+                    <li><a href="/tradition/designPatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^전통문양 디자인\');}catch(_e){}');">전통문양 디자인</a></li>
+                    <li><a href="/industry/content3dList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^3D프린팅콘텐츠\');}catch(_e){}');">3D프린팅콘텐츠</a></li>
+                    <li><a href="/knowledge/encyclopediaList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^예술지식백과\');}catch(_e){}');">예술지식백과</a></li>
+                    <!--<li><a href="/knowledge/bookList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^추천도서\');}catch(_e){}');">추천도서</a></li>-->
+                    <li><a href="/knowledge/reportListNew.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^연구교육자료\');}catch(_e){}');">연구교육자료</a></li>
+                    <li><a href="/industry/apiGuideA.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^문화포털 API\');}catch(_e){}');">문화포털 API</a></li>
+                   <!-- <li><a href="/topic/search/searchList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^GNB^문화지식^문화표제어\');}catch(_e){}');">문화표제어</a></li>-->
+                </ul>
+                <ul class="lnb_banner">
+                    <li class="banner1">
+                        <a href="http://www.culture.go.kr/">
+                            <dl>
+                                <dt>문화N티켓</dt>
+                                <dd>티켓 예매 발권 서비스</dd>
+                            </dl>
+                        </a>
+                    </li>
+                    <li class="banner2">
+                        <a href="/perform/reviewList.do">
+                            <dl>
+                                <dt>문화후기</dt>
+                                <dd>관람 후기 공유</dd>
+                            </dl>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+            <!-- //aside_menu -->
+            <!-- contents -->
+            <div id="contents">
+    <form action="/tradition/autoPatternDownFile.do" method="post" id="patternDownForm" name="patternDownForm">
+        <input type="hidden" name="type" id="type"/>
+        <input type="hidden" name="pattern_type" id="pattern_type"/>
+        <input type="hidden" name="chkOrgImg" id="chkOrgImg"/>
+    </form>
+
+    <div class="content_header">
+        <div class="location"><a href="/">홈</a><a href="/tradition/designPatternList.do">문화지식</a><span>전통문양 디자인 (디자인 문양)</span></div>
+        <h3>전통문양 디자인 (디자인 문양)</h3>
+    </div>
+    
+        <div class="content_link">
+
+        <ul>
+            <li class="share_wrap">
+                <a href="#" class="share">sns 공유</a>
+                <ul class="share_list">
+                    <li><a href="javascript:shareFacebook();" title="페이스북 공유 새창">페이스북</a></li>
+                    <li><a href="javascript:shareTwitter();" title="트위터 공유 새창">트위터</a></li>
+                    <li><a href="javascript:shareGoogle();" title="구글 공유 새창">구글</a></li>
+                    <li><a href="javascript:shareKakaoTalk();" name="kakao-link-btn" id="kakao-link-btn" title="카카오톡 공유 새창">카카오톡</a></li>
+                    <li><a href="javascript:shareKakaoStoryA();" id="kakaostory-share" name="kakaostory-share" title="카카오스토리 공유 새창">카카오스토리</a></li>
+                    <li class="copy"><a href="javascript:shareClipboardData();" title="주소복사">주소복사</a></li>
+                </ul>
+            </li>
+            <li class="mobile_no"><button type="button" class="print jqTCPrint" title="인쇄 (새창)"><span>인쇄</span></button></li>
+            
+        </ul>
+
+         
+
+        
+
+    </div>
+    
+    <!-- 2019.3.5 depth3 menu tab -->
+    <ul class="depth3_tab tradition">
+        <li class="on"><a href="/tradition/designPatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^문화지식^전통문양 디자인^디자인 문양\');}catch(_e){}');">디자인 문양</a></li>
+        <li class=""><a href="/tradition/shapeList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^문화지식^전통문양 디자인^형태별 문양\');}catch(_e){}');">형태별 문양</a></li>
+        <li class=""><a href="/tradition/useList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^문화지식^전통문양 디자인^용도별 문양\');}catch(_e){}');">용도별 문양</a></li>
+        <li class=""><a href="/tradition/usePatternList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^문화지식^전통문양 디자인^활용 디자인\');}catch(_e){}');">활용 디자인</a></li>
+        <li class=""><a href="/tradition/useDesignList.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^문화지식^전통문양 디자인^전통문양활용\');}catch(_e){}');">전통문양활용</a></li>
+        <li class=""><a href="/tradition/guide.do" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^문화지식^전통문양 디자인^활용 가이드\');}catch(_e){}');">활용 가이드</a></li>
+        <li class=""><a href="/tradition/pattern.do?type=A" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^문화지식^전통문양 디자인^문양의 이해\');}catch(_e){}');">문양의 이해</a></li>
+        <li class=""><a href="/tradition/guide.do?type=B01" onclick="eval('try{_trk_flashEnvView(\'_TRK_CP=^문화지식^전통문양 디자인^전통문양 사용방법\');}catch(_e){}');">전통문양 사용방법</a></li>
+    </ul>
+    <!-- // 2019.3.5 depth3 menu tab -->
+    <form id="pattern" name="pattern" action="designPatternList.do" method="post">
+    <!-- 2019.03.06 depth3-page-title 추가 -->
+    <div class="depth3-page-title">원시자료의 디자인 정형화를 원칙으로 한 기본디자인과 산업적 활용이 가능한 응용형태의 확장디자인을 제공하고 있습니다.</div>
+    <!-- // 2019.03.06 depth3-page-title 추가 -->
+    <div class="bbs_search type5">
+        <fieldset>
+            <legend>검색정보 입력</legend>
+            <div class="input_group">
+                <input type="hidden" id="dpid" name="dpid" />
+                <input type="hidden" id="sType" name="sType" />
+                <input type="hidden" id="xtaxonomy" name="xtaxonomy" />
+                <input type="hidden" id="xtaxonomy2" name="xtaxonomy2" />
+                <input type="hidden" id="uType" name="uType" />
+                <input type="hidden" id="xtitle" name="xtitle" />
+                <input type="hidden" id="gubun" name="gubun" value="all" />
+                
+                <input type="text" class="form_keyword" id="sWord" name="sWord"  title="검색어" placeholder="검색어를 입력하세요.">
+                <button id="search1" type="submit" class="btn_search" title="검색">검색</button>
+            </div>
+        </fieldset>
+    </div>
+
+        <ul class="trad_tab item10">
+            <li class="on"><a
+                    href="/tradition/designPatternList.do?sType=00">전체</a></li>
+            <li class=""><a
+                    href="/tradition/designPatternList.do?sType=01&amp;dpid=139">인물문</a></li>
+            <li class=""><a
+                    href="/tradition/designPatternList.do?sType=02&amp;dpid=140">동물문</a></li>
+            <li class=""><a
+                    href="/tradition/designPatternList.do?sType=03&amp;dpid=141">식물문</a></li>
+            <li class=""><a
+                    href="/tradition/designPatternList.do?sType=04&amp;dpid=142">인공물문</a></li>
+            <li class=""><a
+                    href="/tradition/designPatternList.do?sType=05&amp;dpid=143">자연산수문</a></li>
+            <li class=""><a
+                    href="/tradition/designPatternList.do?sType=06&amp;dpid=144">문자문</a></li>
+            <li class=""><a
+                    href="/tradition/designPatternList.do?sType=07&amp;dpid=145">기하문</a></li>
+            <li class=""><a
+                    href="/tradition/designPatternList.do?sType=08&amp;dpid=146">복합문</a></li>
+            <li class=""><a
+                    href="/tradition/designPatternList.do?sType=09&amp;dpid=147">기타문</a></li>
+        </ul>
+        <ul class="depth_tab1">
+
+            <!--<c:if test='${pattern.uType eq "all" or empty pattern.uType}' >on</c:if>-->
+            <li class=""><a
+                    href="designPatternList.do?uType=all&amp;sType=00&amp;dpid=&amp;xtaxonomy=&amp;xtaxonomy2=">전체
+                (
+                9718
+                )건</a></li>
+            <li class=""><a
+                    href="designPatternList.do?uType=2D&amp;sType=00&amp;dpid=&amp;xtaxonomy=&amp;xtaxonomy2=">2D
+                문양(
+                9062
+                )</a></li>
+            <li class=""><a
+                    href="designPatternList.do?uType=3D&amp;sType=00&amp;dpid=&amp;xtaxonomy=&amp;xtaxonomy2=">3D
+                문양(
+                550
+                )</a></li>
+            <li class=""><a
+                    href="designPatternList.do?uType=3D2&amp;sType=00&amp;dpid=&amp;xtaxonomy=&amp;xtaxonomy2=">유산활용
+                3D(
+                106
+                )</a></li>
+        </ul>
+
+        <ul class="depth_tab2">
+              
+            <li><a
+                    href="/tradition/designPatternList.do?uType=&amp;dpid=139&amp;xtaxonomy=%EC%9D%B8%EB%AC%BC%EB%AC%B8">
+                인물문
+                (
+                268
+                )</a></li> 
+            <li><a
+                    href="/tradition/designPatternList.do?uType=&amp;dpid=140&amp;xtaxonomy=%EB%8F%99%EB%AC%BC%EB%AC%B8">
+                동물문
+                (
+                1282
+                )</a></li> 
+            <li><a
+                    href="/tradition/designPatternList.do?uType=&amp;dpid=141&amp;xtaxonomy=%EC%8B%9D%EB%AC%BC%EB%AC%B8">
+                식물문
+                (
+                5031
+                )</a></li> 
+            <li><a
+                    href="/tradition/designPatternList.do?uType=&amp;dpid=142&amp;xtaxonomy=%EC%9D%B8%EA%B3%B5%EB%AC%BC%EB%AC%B8">
+                인공물문
+                (
+                439
+                )</a></li> 
+            <li><a
+                    href="/tradition/designPatternList.do?uType=&amp;dpid=143&amp;xtaxonomy=%EC%9E%90%EC%97%B0%EC%82%B0%EC%88%98%EB%AC%B8">
+                자연산수문
+                (
+                420
+                )</a></li> 
+            <li><a
+                    href="/tradition/designPatternList.do?uType=&amp;dpid=144&amp;xtaxonomy=%EB%AC%B8%EC%9E%90%EB%AC%B8">
+                문자문
+                (
+                734
+                )</a></li> 
+            <li><a
+                    href="/tradition/designPatternList.do?uType=&amp;dpid=145&amp;xtaxonomy=%EA%B8%B0%ED%95%98%EB%AC%B8">
+                기하문
+                (
+                1087
+                )</a></li> 
+            <li><a
+                    href="/tradition/designPatternList.do?uType=&amp;dpid=146&amp;xtaxonomy=%EB%B3%B5%ED%95%A9%EB%AC%B8">
+                복합문
+                (
+                283
+                )</a></li> 
+            <li><a
+                    href="/tradition/designPatternList.do?uType=&amp;dpid=147&amp;xtaxonomy=%EA%B8%B0%ED%83%80%EB%AC%B8">
+                기타문
+                (
+                174
+                )</a></li>
+              
+              
+        </ul>
+        <!--view-->
+        <div class="tradtit_wrap">
+            <h4>연꽃무늬수막새(608)</h4>
+        </div>
+        <div class="trad_detail">
+            <div class="thumb_wrap">
+                <span class="thumb"><img src="/ptn/images/04/4d/044d09b339f24294989a764bd682e350.png" alt="연꽃무늬수막새"/></span>
+                <p class="btn">
+                    <a href="#design_pattern_2d" onclick="ajaxCardView(&#39;608&#39;);"  class="btn_type1 modal_open"><span>크게보기</span></a>
+                    <a href="javascript:;" class="btn_type2" onclick="downLoadDesign(608);">이미지 다운로드</a>
+                </p>
+            </div>
+            <h5 class="title">문양정보</h5>
+            <ul class="list">
+                <li>
+                    <span class="tit">문양명칭</span>
+                    <span class="txt">연꽃무늬수막새</span>
+                </li>
+                <li>
+                    <span class="tit">문양구분</span>
+                    <span class="txt">원시문양(2D)</span>
+                </li>
+                <li>
+                    <span class="tit">국적/시대</span>
+                    <span class="txt">한국/통일신라</span>
+                </li>
+                <li>
+                    <span class="tit">원천유물명</span>
+                    <span class="txt">연꽃무늬수막새</span>
+                </li>
+                <li>
+                    <span class="tit">소장기관</span>
+                    <span class="txt">한국문화정보센터</span>
+                </li>
+                <li>
+                    <span class="tit">원천유물 재질</span>
+                    <span class="txt">토제/경질</span>
+                </li>
+            </ul>
+            
+                
+                    <a href="javascript:;" class="btn_imgdown" onclick="org_down(608);" >
+                        <span >원본 다운로드</span>
+                    </a>
+                
+                
+           
+             
+        </div>
+        <ul class="trad_info">
+            <li>
+                <p class="tit">디자인 요소</p>
+                <p class="btxt">한 송이의 활짝 핀 연꽃을 디자인하였다. 연꽃은 생명의 창조와 번영의 상징이며 과거급제기원 등과 같은 길상적인 의미를 포함하는 문양이다. 둥근 씨방 안에 돋아난 연씨와 겹쳐져 있는 꽃잎은 입체감과 생동감을 준다. 뒤쪽의 꽃잎이 보이는 모습으로 표현하기 위해 꽃잎 사이마다 부채꼴 모양의 사이 잎을 표현하여 연꽃의 화려함을 부각시킨 디자인이다. </p>
+            </li>
+            <li>
+                <p class="tit">적용 제품군</p>
+                <p class="btxt">제품디자인>생활용품류>인테리어 소품<br />제품디자인>귀금속 보석류>시계, 팔찌, 귀걸이, 브로치<br />제품디자인>가구류>식탁<br />패션디자인>의류 및 패션잡화>여성복 남성복 디자인, 언더웨어, 지갑 핸드백<br />포장/패키지디자인>제품 포장 디자인>화장품류</p>
+            </li>
+              
+
+
+            
+                  
+                    <li>
+                        <p class="tit">디자인 방향성</p>
+                        <p class="btxt">연꽃은 길상적인 의미를 가진 문양으로 인테리어 소품 등에 잘 어울린다. 원형 테두리 안쪽에 화려하게 자리한 한 송이의 연꽃은 보석류에 적합한 디자인이다. 연꽃잎의 가장자리를  요동치는 물결모양으로 생동감 넘치게 표현하여 여성복이나 화장품 포장디자인으로 활용할 수 있다. </p>
+                    </li>
+                  
+            
+        </ul>
+
+          
+        <ul class="pattern_list" >
+
+              
+
+            <li>
+                <div class="tit">원천유물</div>
+                <a href="patternOrigin.do?did=52774">
+                    <div class="thumb test" style="line-height: 5.7;"><img src="/ptn/images/39/ed/39ed9c4640a144c7bf41d74ad2d668ea.png" alt="연꽃무늬수막새"></div>
+                    <p class="txt">연꽃무늬수막새</p>
+                </a>
+            </li>
+              
+              
+            <li>
+                <div class="tit">원시문양</div>
+                <a href="patternOrigin.do?did=52774">
+                    <div class="thumb test" style="line-height: 5.7;"><img src="/ptn/images/32/a2/32a22871b2604e778dad824a6dc67ea9.png" alt="연꽃무늬수막새"></div>
+                    <p class="txt">연꽃무늬수막새</p>
+                </a>
+            </li>
+              
+              
+        </ul>
+          
+
+        <div class="public_sign">
+            <a href="http://www.kogl.or.kr/info/licenseType1.do" target="_blank" title="새창" class="license"><img
+                    src="../../assets/images/content/public-logo.jpg" alt="OPEN 공공누리"></a>
+            한국문화정보원이 창작한 저작물은 <strong>"공공누리 출처표시"</strong> 조건에 따라 이용할 수 있습니다.<br/>
+            <strong>예) 본 저작물은 "문화포털"에서 서비스 되는 전통문양을 활용하였습니다.</strong>
+        </div>
+        <div class="btn_center">
+            <a href="designPatternList.do" class="btn_list">목록</a>
+        </div>
+        <!--//view-->
+    </form>
+</div>
+            <!-- //contents -->
+            <!-- after_contents -->
+            
+    <!-- 디자인 문양 크게보기 -->
+    <div id="design_pattern_2d" class="modal_wrap" >
+        <div class="layer_cont">
+    <!-- 디자인 문양 크게보기(2D) -->
+    <div>
+        <script type="text/javascript">
+            $(function () {
+                setTimeout(function () {
+                    $('.btn_close_modal').focus();
+                })
+            })
+            function downLoad(did) {
+                /**
+                 <%--<sec:authorize ifNotGranted="ROLE_USER">--%>
+                 <%--alert("로그인하시면 \n문양을 다운로드 받으실 수 있습니다.");--%>
+                 <%--opener.location.href="/member/login.do?redirect_url="+escape("/tradition/designPatternList.do");--%>
+                 <%--window.close();--%>
+                 <%--</sec:authorize>--%>
+                 <%--<sec:authorize ifAnyGranted="ROLE_USER">--%>
+                 <%--location.href='/tradition/designPatternDownFile.do?seq='+did;--%>
+                 <%--</sec:authorize>--%>
+                 **/
+                // location.href = '/tradition/designPatternDownFile.do?seq=' + did;
+                window.open('/ptn/image.do?type=PG03&seq='+did);
+
+                // 20.12.22 와이즈트래커 추가
+                startDownloadWiseTracking(did,'G11');
+            }
+
+            function go_apply() {
+                //tradition/guideB02.do
+                opener.location.href = '/tradition/guideB02.do';
+                window.close();
+            }
+
+            function org_down1(did) {
+                var applyInfo = null;
+                if (applyInfo == null) {
+                    location = '/tradition/autoGuideB02.do?type=org&pattern_type=PG03&chkOrgImg=' + did;
+                    //window.close();
+                } else {
+
+                    // var frm = document.getElementById("patternDownForm");
+                    // frm.type.value = "org";
+                    // frm.pattern_type.value = "PG03";
+                    // frm.chkOrgImg.value = did;
+                    //
+                    // frm.submit();
+                    var param = "type=org&pattern_type=PG03&chkOrgImg="+did;
+
+                    jQuery.ajax({
+                        type : "POST",
+                        url: '/tradition/autoPatternDownFileNew.do',
+                        data: param,
+                        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                        cache: false,
+                        dataType: "json",
+                        success : function(success) {
+                            file_check2(success.message, did);
+                        }
+                        ,error : function(result) {
+                            alert("fail");
+                        }
+                    });
+
+                }
+            }
+
+            function file_check2(downloadkey,did){
+                window.open('/ptn/download.do?downloadkey=' + downloadkey, '_blank');
+
+                var param = "type=org&pattern_type=PG03&chkOrgImg="+did;
+                var	furl = '/tradition/autoPatternDownFileCheck.do';
+
+
+                $.ajax({
+                    type: "POST",
+                    url: furl,
+                    data: param,
+                    dataType : "json",
+                    success: function(data) {
+                        // 20.12.22 와이즈트래커 추가
+                        startDownloadWiseTracking(did,'G12');
+                    }
+                });
+            }
+
+
+        </script>
+        <div class="modal_content type3">
+            <h3 class="modal_title">연꽃무늬수막새( 608 ) 크게보기</h3>
+            <div class="layer_cont">
+                <div class="design_thumb"><img
+                        src="/ptn/images/04/4d/044d09b339f24294989a764bd682e350.png"
+                        alt="연꽃무늬수막새"></div>
+                <div class="btn_center">
+                    <a href="javascript:;" class="btn_type1" onclick="downLoad(608);">이미지
+                        다운로드</a>
+                    
+                        <a href="javascript:;" class="btn_type2" onclick="org_down1(608);"><span>원본 다운로드</span></a>
+                    
+                </div>
+                <p class="mt20">
+                    한국문화정보센터이(가) 창작한
+                    연꽃무늬수막새
+                    저작물은 "공공누리" 출처표시 조건에 따라 이용 할 수 있으며 AI 파일 등 해상도가 높은 이미지를 원하실 경우 또는 이미지 활용을 통한 제품 홍보를 원하실 경우, 이용허락에 대한
+                    문서가
+                    필요한 경우에는 신청 절차를 통해 무료로 이용 하실 수 있습니다.
+                </p>
+                <p class="inquiry">문의 : 02-3153-2843</p>
+                <div class="btn_center">
+                    <a href="#" class="btn_close modal_close">닫기</a>
+                </div>
+            </div>
+            <button type="button" class="btn_close_modal modal_close">닫기</button>
+        </div>
+    </div>
+    <!-- //디자인 문양 크게보기(2D) -->
+    <!-- 디자인 문양 크게보기(3D) -->
+    
+
+    <!--//디자인 문양 크게보기(3D)-->
+</div>
+    </div>
+
+    <!--  20.12.21 전통문양 & 3D 프린팅 콘텐츠 와이즈 트래킹 추가 start -->
+    <script type="text/javascript" src="/assets/js/pattern/patternWiseTraker.js?v=20201223130000"></script>
+    <script type="text/javascript">
+        //<![CDATA[
+        // 20.12.21
+        // function setWiseTrkPnc() {
+        //     var h4 = document.querySelector('h4');
+        //     var chkpos = h4.textContent.indexOf('(');
+        //     if(chkpos>-1){
+        //         var title = h4.textContent.substring(0, chkpos);
+        //         var seq = h4.textContent.substring(chkpos + 1, h4.textContent.length - 1);
+        //
+        //         _TRK_PNC    = seq;    // /*608*/
+        //         _TRK_PNC_NM = title;  // /*연꽃무늬수막새*/
+        //         _TRK_PI = "PDV";
+        //
+        //         console.log(seq+','+title);
+        //     }
+        // }
+        setWiseTrkPnc();
+        //]]>
+    </script>
+    <!--  20.12.21 전통문양 & 3D 프린팅 콘텐츠 와이즈 트래킹 추가 end -->
+
+            <!-- //after_contents -->
+        </div>
+        <!-- //container -->
+        <!-- organBanner -->
+        <div class="organ_banner">
+        <h2>관련기관 안내</h2>
+        <span class="organ_ctrl">
+                <button type="button" class="btn_prev">이전</button>
+                <button type="button" class="btn_pause">정지</button>
+                <button type="button" class="btn_play">재생</button>
+                <button type="button" class="btn_next">다음</button>
+            </span>
+        <ul class="organ_slider">
+        </ul>
+        <script>
+            var $organSlider = $('.organ_slider');
+
+            $.ajax({
+                url			:	'/organSlider.ajax'
+                ,type		:	'get'
+                ,data		:	{'sid' : '관련기관 안내 배너'}
+                ,dataType	:	'html'
+                ,success	:	function( res ) {
+                    var myObj = JSON.parse(res);
+                    var myObj2 = myObj['관련기관 안내 배너'];
+                    var liTag = '';
+
+                    for(var i=0; i<myObj2.length; i++){
+                        liTag = liTag + '<li><a href="' + myObj2[i].link_url + '" target="_blank" title="' + myObj2[i].title + ' 새창이동"><img src="' + myObj2[i].image_url + '" alt="' + myObj2[i].title + '"/></a></li>';
+                    }
+
+                    $organSlider.html(liTag);
+                }
+                ,error		:	function(data, status, err) {
+                }
+            });
+
+            $organSlider.slick({
+                dots: false,
+                arrows: false,
+                speed: 500,
+                autoplay: true,
+                autoplaySpeed: 3500,
+                slidesToShow: 7,
+                slidesToScroll: 1
+            });
+            $('.organ_ctrl .btn_prev').click(function() {
+                $organSlider.slick('slickPrev');
+            });
+            $('.organ_ctrl .btn_next').click(function() {
+                $organSlider.slick('slickNext');
+            });
+            $('.organ_ctrl .btn_pause').click(function() {
+                $organSlider.slick('slickPause');
+                $(this).hide().next('.btn_play').show().focus();
+            });
+            $('.organ_ctrl .btn_play').click(function() {
+                $organSlider.slick('slickPlay');
+                $(this).hide().prev('.btn_pause').show().focus();
+            });
+            $(function(){
+                $(".organ_guide").on("click",function(){
+                    $(".organ_slider").slick("refresh")
+                });
+            });
+        </script>
+    </div>
+        <!-- //organBanner -->
+        <!-- footer -->
+        <div id="footer">
+        <!-- 관련기관 배너 : S -->
+        <div id="orgBanner" class="jqOrganBannerList" style="display:none;">
+            <h2>관련기관배너</h2>
+            <div>
+                <button type="button" class="prev"><img src="/images/portal/layout/btnPrev02.gif" alt="관련기관배너 이전" /></button>
+                <div class="jqOrganBannerListItem"></div>
+                <button type="button" class="next"><img src="/images/portal/layout/btnNext02.gif" alt="관련기관배너 다음" /></button>
+            </div>
+        </div>
+        <!-- 관련기관 배너 : E -->
+
+        <div class="fmenu_wrap">
+            <div class="fmenu">
+                <a href="/info/aboutA.do">문화포털이란?</a>
+                <a href="#organ_banner" class="mobile_no organ_guide">관련기관 안내</a>
+                
+                <a href="/culture/perfromForm.do">문화홍보등록</a>
+                <a href="/info/copyrightGuide.do">저작권정책</a>
+                <a href="/info/privacyPolicy.do" style="color: red;">개인정보처리방침</a>
+                
+                <a href="/info/searchPolicy.do" class="pc_mobile">검색결과수집정책</a>
+            </div>
+        </div>
+        <div class="inner">
+            <div class="relaton_site">
+                <label for="microSite" class="hide">관련 사이트 선택</label>
+                <select title="관련 사이트" id="microSite" style="color: black;">
+                    <option value="">관련 사이트</option>
+                    <option value="https://www.culture.go.kr/ticket">문화N티켓</option>
+                    <option value="https://inmun360.culture.go.kr/">인문 360</option>
+                    <option value="https://www.culture.go.kr/wday">매달 마지막 수요일은 문화가 있는 날!</option>
+                    <option value="https://www.kculture.or.kr/index.jsp">전통문화포털</option>
+                    <option value="http://csv.culture.go.kr/frt/main.do">문화체육자원봉사</option>
+                    <option value="https://www.culture.go.kr/deduction/">문화비 소득공제</option>
+                    <option value="https://www.bigdata-culture.kr/">문화 빅데이터 플랫폼</option>
+                </select>
+                <a  href="javascript:void(0);" onclick="javascript:goRelSite($('#microSite').val());return;" title="새창 이동" class="btn_move">이동</a>
+                <script>
+                        $("#microSite").change(function() {
+                            $("#microSite option:selected").each(function() {
+                                var select_text= $(this).text()coordinateRadius
+                                $(".btn_move").attr("title", select_text+ "새창");
+                            });
+                        });
+                </script>
+            </div>
+            <div class="sns_wrap">
+                <a href="https://www.facebook.com/cultureportal/" target="_blank" title="문화포털 페이스북 새창"><img src="/assets/images/common/ico_sns1.png" alt="페이스북"/></a>
+                
+                <a href="http://blog.naver.com/kcis_/" target="_blank" title="문화포털 네이버 블로그 새창"><img src="/assets/images/common/ico_sns3.png" alt="네이버 블로그"/></a>
+                <a href="http://www.youtube.com/user/cultureportal" target="_blank" title="문화포털 유튜브 새창"><img src="/assets/images/common/ico_sns4.png" alt="유튜브"/></a>
+            </div>
+            <div class="addr_wrap">
+                <p>대표전화 1688-2220 <span>이메일 <a href="mailto:culture@kcisa.kr" target="_blank" title="새창으로 culture@kcisa.kr 에게 메일 보내기">culture@kcisa.kr</a></span></p>
+                <p>사업자번호 101-82-10054 <span>통신판매업신고 2018-서울마포-1502</span> <span>대표자 홍희경</span></p>
+                <address>우) 03925 서울시 마포구 월드컵북로 400</address>
+                <p>COPYRIGHTⓒ 한국문화정보원</p>
+            </div>
+
+            <div class="logo_wrap">
+                <a href="http://www.kcisa.kr" target="_blank" title="한국문화정보원 새창"><img src="/assets/images/common/kcisa_logo_2021.png" alt="한국문화정보원"/></a>
+                <a href="http://www.mcst.go.kr" target="_blank" title="문화체육관광부 새창"><img src="/assets/images/common/mcst_logo.png" alt="문화체육관광부"/></a>
+            </div>
+            <div class="mark_wrap">
+                <a href="/info/accessibility.do" ><img src="/assets/images/common/mark_accessibility.png" alt="과학기술정보통신부 WEB ACCESSIBILITY 마크(웹 접근성 품질인증 마크)"/></a>
+                <a href="http://www.kogl.or.kr" target="_blank" title="공공누리 새창"><img src="/assets/images/main/link_img04.png" alt="공공누리"/></a>
+            </div>
+
+        </div>
+
+        <script type="text/javascript" src="/assets/js/1114_Insight_WebAnalytics.js?v=20200205190800"></script>
+        <!-- AceCounter Log Gathering Script V.7.5.2017020801 -->
+        
+        <!-- AceCounter Log Gathering Script End -->
+
+        <script type="text/javascript">
+            // 20.12.19 검색시 와이즈트캐킹 하기
+            function call_searchWisetracking() {
+                try {
+                    var preSearchTerms= null; //document.getElementById('preSearchTerms').value;
+                    var searchTerms   = document.getElementById('searchTerm');
+                    var search_totcnt = document.getElementById('search_totcnt');
+
+                    // 검색시 헤더 상단을 이용해서 검색을 하는 경우에만 트랙킹하기.
+                    var searchFromTop = sessionStorage.getItem('searchFromTop');
+                    if(searchFromTop != null && searchTerms!=undefined && searchTerms!=null && searchTerms!='') {
+                        if(searchTerms.value.trim() != '') {
+                            _TRK_IK = searchTerms.value;
+                            _TRK_IKWDRS = (search_totcnt != null) ? search_totcnt.textContent.replace(',', '') : '';
+                            _TRK_G10 = "1";
+                            console.log('keyword=' + _TRK_IK + ',totalcount=' + _TRK_IKWDRS);
+                        }
+                    }
+                }catch (e) {
+                    console.log(e.toString());
+                }
+            }
+            call_searchWisetracking();
+        </script>
+    </div>
+        <!-- //footer -->
+        
+        
+    </div>
+</body>
+</html>

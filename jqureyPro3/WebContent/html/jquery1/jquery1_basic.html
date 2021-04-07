@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>JQUERY 기본</title>
+	<script type="text/javascript" src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+	//document.getElement...
+	$(document).ready(function(){
+		alert(1);	
+	});
+	</script>
+
+</head>
+<body>
+	<h1>JQuery	테스트</h1>
+</body>
+<script type="text/javascript">
+	var list = document.getElementsByTagName("h1");
+	list[0].style.backgroundClolr ="yellos";
+	list[0]/styel.colror ="blue";
+	
+	$("h1") // ==>document.getElementsByTagName("h1");
+	var obj = $(#h1)
+	obj.css("background-color","gray")
+	obj.css("color","white")
+	
+	//연결해서 호출
+	//obj.css().css().css()
+	
+	$(function()){
+		alert(2);
+	}
+</script>
+</html>

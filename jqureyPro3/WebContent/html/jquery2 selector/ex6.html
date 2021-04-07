@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		 $(document).ready(function(){
+			 $(":input").css("border-color", "lime").css("background-color", "pink");
+			 $("input[type='button']").css("background-color", "yellow");
+			 $(":button, input[type='button']").css("background-color", "skyblue");
+			 $(":submit").css("background-color", "green");
+			 $(":reset").css("background-color", "yellow"); 
+			 $(":text, :password").css("border-color", "blue");
+			 $(":file, :image").css("border", "2px solid red");
+		});
+	</script>
+</head>
+<body>
+	<form>
+		<div style="padding-left:33%">
+			Text: <input type="text">
+			<br>
+			Password : <input type="text">
+			<br>
+			<br>
+			Radio : <label><input type="radio" name="radios" value="A">A</label>
+			<label><input type="radio" name="radios" value="B">B</label>
+			<br>
+			<br>
+			Checkbox: <label><input type="checkbox" name="checkboxes" value="1">1</label>
+			<label><input type="checkbox" name="checkboxes" value="2">2</label>
+			<br>
+			<br>
+			Textarea:		
+			<br>
+			<textarea rows="50" cols="70"></textarea>
+			<br>
+			<br>
+			Image: <input type="image" src="1.jpg" width="70px" height="70px">
+			<br>
+			<br>
+			File : <input type="file">
+			<br>
+			<br>
+			Buttons : 
+			<button type="button">Normal</button>
+			<button type="submit">Submit</button>
+			<button type="reset">Reset</button>
+			<br>
+			<br>
+			<input type="button" value="일반버튼">
+			<input type="submit" value="전송버튼">
+			<input type="reset" value="초기화버튼">
+		</div>
+	</form>
+
+</body>
+</html>

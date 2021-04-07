@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+	 var fruits = ["apple", "banana", "peer"];
+	 
+	 document.write(fruits + "<br>");
+	 
+	 fruits.indexOf("apple") //몇번방에 있는지 확인
+	 fruits.push("banana")	//banana를 fruits에 추가
+	 fruits.lastIndexOf("apple")	//뒤부터 몇번방에 있는지 확인	 
+	
+
+	 var cars = ["아반떼", "소나타", "제네시스"];
+	 
+	 document.write("정렬 전 " + cars + "<br>");
+	 document.write("<hr>")
+	 document.write("정렬 후 " + cars.sort + "<br>");
+	 document.write("<hr>")
+	 document.write("단어 붙이기" + cars.concat(fruits) + "<br>");
+	 document.write("<hr>")
+	 document.write("삭제하기" + cars.slice(1,2) + "<br>");  //1번부터 2번방 직전까지 (2번방은 짤리지 않는다.)
+	
+	
+	
+	</script>
+</head>
+<body>
+
+</body>
+</html>

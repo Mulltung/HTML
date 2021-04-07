@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<style type="text/css">
+		img {
+			height: 200px;
+			width : 200px;
+		}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		
+		//a링크 이동 막기
+		$(document).ready(function() {
+			$("a").click(function() {
+				return false;
+			});		
+		
+		//클릭한 링크의 src 저장
+		var href;
+		
+		//징징이 fade
+		$("#img1").click(function() {
+			href = $(this).attr('href');
+			$("img").fadeOut("fast", function() {
+				$("img").attr('src', href);
+				$('img').fadeIn();
+			});
+		});
+		
+		//고양이 slide
+		$("#img2").click(function() {
+			href = $(this).attr('href');
+			$("img").slideUp("fast", function() {
+				$("img").attr('src', href);
+				$('img').slideDown();
+			});
+		});
+		
+		//방문자 show
+		$("#img3").click(function() {
+			href = $(this).attr('href');
+			$("img").hide(function() {
+				$("img").attr('src', href);
+				$('img').show();
+			});
+		});
+		
+	});	
+
+	</script>
+</head>
+<body>
+	<form>
+		<div id="ex1">
+			<h1>교재목록</h1>
+				<ul>
+					<li><a id="img1" href="1.jpg">우울한 징징이</a></li>
+					<li><a id="img2" href="2.jpg">고양이</a></li>
+					<li><a id="img3" href="3.jpg">방문자</a></li>
+				</ul>
+		</div>
+		<img src="no.jpg">
+	</form>
+	
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+	<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	이름 : <input type = "text" id="name">
+	성별 : <input type ="radio" name = "gender" value="M"	id="gender_m"><label for= "gender_m">남</label>
+		 <input type ="radio" name = "gender" value="F" id="gender_f"><label for= "gender_f">여</label>
+	취미: 
+	<input type="Checkbox" value ="여행" id="hobby_01"><label for= "hobby_01">여행</label>
+	<input type="Checkbox" value ="음악" id="hobby_02"><label for= "hobby_02">음악</label>
+	<input type="Checkbox" value ="영화" id="hobby_03"><label for= "hobby_03">영화</label>
+	<input type="Checkbox" value ="그만" id="hobby_04"><label for= "hobby_04">그만</label>
+	
+	<hr>
+	<button type="button" onclick="print()">결과 출력</button>
+	
+	<div id="result"></div>
+	
+	<script type="text/javascript">
+	 	function print(){
+	 		var result = document.getElementById("name").value;
+	 		document.getElementById("result").innerHTML = result;
+	 		
+	 	}
+	</script>
+</body>
+</html> 

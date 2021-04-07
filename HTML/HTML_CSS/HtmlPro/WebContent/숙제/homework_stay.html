@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+	hr {
+		border: solid 3px blue;
+	}
+	
+	p {
+		font-size: 50px;
+	}
+	
+	div{
+		width:200pt; 
+		height:200pt;
+		overflow: auto;
+		background-color: yellow;
+	}
+
+	</style>
+	
+	<script type="text/javascript">
+		var x = [];
+		function printRandom() {
+			for(i = 0; i < 5 ; i++){
+				x = Math.round(Math.random()*9);
+				document.getElementById("a").innerHTML += x;
+				if(i == 4){
+					document.getElementById("a").innerHTML += "<br>";
+					continue;
+				}
+				document.getElementById("a").innerHTML += " , ";
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<button type ="button" onclick = "printRandom()">시작</button>
+	<hr>
+	<p>출력위치</p>
+	 <div id="a"></div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>과제</title>
+</head>
+<body>
+	2. switch 조건문 문제
+	<br>
+	<script>
+		var grade = prompt("점수를 입력하시오 :" , "0 ~ 100 사이의 점수로 ");
+		var a =parseInt(grade/10)
+
+		switch(a){
+		case 10: document.write("A"); break
+		case 9 : document.write("A"); break
+		case 8 : document.write("B"); break
+		case 7 : document.write("C"); break
+		case 6 : document.write("D"); break
+		default: document.write("F"); break
+		}
+		document.write("학점입니다" + "<br>" + "<br>");
+	
+		</script>
+	<hr>
+	
+	
+	
+	1. 1부터 10까지의 합을 구하는 프로그램을 작성하시오
+	<br>
+	<script type="text/javascript">
+	var a = 0;
+	for(i = 1; i <11; i++){
+		a += i;
+	}
+	document.write(a + "<br>" + "<br>");
+	</script>
+	
+	2. 1부터 200까지의 짝수의 합을 구하는 프로그램을 작성하시오 (continue를 이용)
+	<script>
+	
+ 		// == : 값이 같으면 pass, === : 값이 같고 유형도 같으면 pass;
+ 		// typeof로 유형을 찾기도 한다.
+ 		
+		var sum = 0;
+ 		for (var i = 1; i < 200; i++) {
+ 			if (i % 2 !== 0) {
+ 				continue;
+ 			}
+ 			 sum += i ;
+		 }
+ 		document.write("<br>" + sum + "<br>"+ "<br>");
+	</script>
+	
+	3. 사용자가 입력한 값을 계속 더하고, 사용자가 0을 입력하면 그때까지 누적된 값을 출력하는 프로그램을 작성하시오. 
+	<script type="text/javascript">
+	var sum = 0;
+	var input;
+	
+	do {
+		input = prompt("값을 입력하세요. 종료하려면 0");
+		input = parseInt(input);
+		sum += input;
+	} while (input != 0){
+		document.write("입력한 값의 총합 : " + sum);
+	}
+	
+	</script>
+	<br>
+	
+	4.다중 for문을 이용해서 1~ 10 까지 중  i와 k의 더한 합이 3의 배수일때만 출력 continue를 이용 
+	<br>
+	<script type="text/javascript">
+		for (var i = 1; i < 11 ; i++){
+			for (var k = 1; i < 11 ; i++)
+				if((i+k) % 3 !== 0){
+					continue;
+				} 
+			document.write("3의 배수 : " + (i + k));
+			}
+		}
+	</script>
+	<br>
+	
+	5. 1~100 까지 중 2의 배수이면서 3의 배수인것만 출력
+	<br>
+	<script type="text/javascript">
+	
+	
+	</script>
+	<br>
+	
+	6. 두 수를 입력(prompt) 두수의 합이 100이상 일 때만 출력 continue를 이용 , 두수 모두 0 이 입력되면 종료
+	<br>
+	<script type="text/javascript">
+		while(a != 0 && b != 0){
+			var a = prompt("숫자 입력 1 :" , "오호");
+			var b = prompt("숫자 입력 2 :" , "어허");
+			var sum = parseInt(a) + parseInt(b);
+		
+			if(sum < 100){
+				continue;
+			}
+			document.write("합은 " + sum + "<br>");
+		}
+			document.write("0,0 입력으로 프로그램 종료");
+	</script>	
+	
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	
+	<style type="text/css">
+	#img{
+		width : 600px;
+		height : 500px;
+	}
+	</style>
+	
+	<script type="text/javascript">
+	
+	//버튼 스타일	
+	function onMouseIn(elem){
+		elem.style.border = "2px solid black";
+	}
+	function onMouseOut(elem){
+		elem.style.border	= "";
+	}
+	
+	
+	//화면이 로딩되면 body안에 이미지 추가 버튼 만들어 지기
+	$(document).ready(function(){
+		var button = $('<button type="button" onclick="addimg()" onmouseover="onMouseIn(this)"onmouseout="onMouseOut(this)">이미지생성</button>');
+		button.appendTo("#button");
+	});
+	
+
+	//사진 추가
+	function addimg(){
+		var img = $('<img alt="image" src="1.jpg" width ="600px" height="500px" onclick="change(this)" onmouseover="onMouseIn(this)"onmouseout="onMouseOut(this)">');
+		img.appendTo("#img");
+	};
+	
+	//스타일 변경
+	function change(a){
+		$(a).css('border', "2px solid red");
+	}
+	</script>
+</head>
+<body>
+	<div id="button"></div>
+	<div id="img"></div>
+</body>
+</html>

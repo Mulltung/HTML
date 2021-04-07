@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>회원가입 페이지</title>
+	<link type="text/css" rel="stylesheet" href="../CSS/mystyle.css">
+</head>
+<body>
+	<form>
+		<fieldset>
+			<legend>회원정보</legend>
+				<table>
+					<tr>
+						<td>아이디&nbsp&nbsp&nbsp</td>
+						<td><input type="text" name="userId" size="30" maxlength="30" ></td>
+					</tr>
+					<tr>
+						<td>패스워드&nbsp&nbsp&nbsp</td>
+						<td><input type="password" name="userPassword" size="30" maxlength="30" placeholder="비밀번호는 10자리 이상입니다."></td>
+					</tr>
+					<tr>
+						<td>패스워드 확인&nbsp&nbsp&nbsp</td>
+						<td><input type="password" name="userPassword" size="30" maxlength="30" placeholder="비밀번호는 10자리 이상입니다."></td>
+					</tr>
+					<tr>
+						<td>이름&nbsp&nbsp&nbsp</td>
+						<td><input type="text" name="userName" size="30" maxlength="5" ></td>
+					</tr>
+					<tr>
+						<td>휴대폰 번호&nbsp&nbsp&nbsp</td>
+						<td><input type="text" name="Tel" size="30" maxlength="50" ></td>
+					</tr>
+					<tr>
+						<td>이메일&nbsp&nbsp&nbsp</td>
+						<td><input type="text" name="userEmail" size="30" maxlength="30"></td>
+					</tr>
+					<tr>
+						<td>생일&nbsp&nbsp&nbsp</td>
+						<td><input type="date" name="birthday" size="30"></td>
+					</tr>
+					<tr>
+						<td>홈페이지&nbsp&nbsp&nbsp</td>
+						<td><input type="text" name="homepage" size="30" maxlength="30"></td>
+					</tr>
+					<tr>
+						<td><input type="radio" value="M" name="gender" id="genderMale"></td>
+						<td><label for="genderMale">남성</label></td>
+					</tr>
+					<tr>
+						<td><input type="radio" value="F" name="gender" id="genderFemale"></td>
+						<td><label for="genderFemale">여성</label></td>
+					</tr>	
+				</table>
+			
+		</fieldset>
+		<input type="submit" value="제출">
+		<input type="reset" value="초기화">
+	</form>
+		
+</body>
+</html>

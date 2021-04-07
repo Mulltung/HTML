@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+			$(document).ready(function() {
+				$("#btnShow").click(function() {
+					$("img").show();
+				});
+			
+				$("#btnHide").click(function() {
+					$("img").hide();
+				});
+	
+				$("#btnsu").click(function() {
+					$("img").slideUp();
+				});
+				
+				$("#btnsd").click(function() {
+					$("img").slideDown();
+				});
+				
+				
+				$("#btnSlideToggle").click(function() {
+					$("img").slideToggle();
+				});
+				
+				
+				$("#btnFadeIn").click(function() {
+					$("img").fadeIn();
+				});
+	
+				
+				$("#btnFadeOUT").click(function() {
+					$("img").fadeOut();
+				});
+	
+				
+				$("#btnFadeTO").click(function() {
+					$("img").fadeTo(700, 0.2);
+				});
+				
+				$("#btnFadeTO2").click(function() {
+					$("img").fadeTo(700, 1);
+				});
+				
+				$("#btnFadeToggle").click(function() {
+					$("img").fadeToggle();
+				});
+			});
+	</script>
+</head>
+<body>
+	<form style="background-color: silver; border: 1px solid black; width: 800px; height: 700px;">
+		<button type="button" id="btnShow">Show</button>
+		<button type="button" id="btnHide">Hide</button>
+		<button type="button" id="btnsu">SlideUp</button>
+		<button type="button" id="btnsd">SlideDown</button>
+
+		<button type="button" id="btnSlideToggle">SlideToggle</button>
+
+		<button type="button" id="btnFadeIn">FadeIn</button>
+		<button type="button" id="btnFadeOUT">FadeOut</button>
+		<button type="button" id="btnFadeTO">FadeTO</button>
+		<button type="button" id="btnFadeTO2">FadeTO2</button>
+
+		<button type="button" id="btnFadeToggle">FadeToggle</button>
+		<br><br><br>
+		
+		<div id="tmp">
+			<img alt="jingjing" src="1.jpg" width="500px" height="500px">
+		</div>
+	</form>
+</body>
+</html>

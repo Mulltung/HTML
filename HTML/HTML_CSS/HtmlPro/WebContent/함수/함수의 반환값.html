@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+	<script type="text/javascript">
+		function sub(a,b) {
+			return a+b;		
+		}
+		
+		window.onload = function () { //창이 로딩이 되면 함수를 실행한다 , 무명함수 사용
+			document.getElementById("a").innerHTML = sub(4,5); //<p>는 innerHTML 사용
+			document.getElementById("tmp").value = sub(4,5);   //<input>은 value 사용
+			
+			var result = confirm("컨펌 메시지 입니다."); // 확인, 취소 버튼이 있다
+			document.getElementById("tmp1").innerHTML = result;
+		}
+	</script>
+</head>
+<body>
+	<p id ="a"></p>  
+	<p id ="tmp1"></p>  
+	<input type="text" id ="tmp" value ="대한민국">대한민국 만만세!
+	<br>
+	<input type="text" value ="대한민국">대한민국 만만세!
+	
+</body>
+</html>

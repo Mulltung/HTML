@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+	
+	//화면이 로딩되면 body안에 이미지 추가 버튼 만들어 지기
+	$(document).ready(function(){
+		$('#img1').hide();
+		var button = $('<button type="button" onclick="addimg()">이미지생성</button>');
+		button.appendTo("#button");
+	});
+	
+	function addimg(){
+		$('#img1').show();
+	};
+	
+	var obj = $('#img1');
+	obj.click(function(){
+	obj.css('border','2px solid red');
+	});
+	
+	</script>
+</head>
+<body>
+	<div id="button"></div>
+	<div id="imges">
+		<img id="img1" alt="img1" src="../../img/Lion.jpg">
+	</div>
+</body>
+</html>

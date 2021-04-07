@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		
+		//html
+		function getHTML(){
+			var result = $("p").html();   //get메소드의 역할 (가지고 와서)
+			$("#result").html(result);	  //set메서드의 역할 (세팅한다.)
+										  //doucument.getElementById("result").innerHTML = result;
+		}								  //태그를 포함해서 첫번째만 가져온다.
+		
+		//text
+		function getTEXT(){
+			var result = $("p").text();   //get메소드의 역할 (가지고 와서)
+			$("#result").html(result);	  //set메서드의 역할 (세팅한다.)
+										  //doucument.getElementById("result").innerHTML = result;		
+		}								  //텍스트 모두 가지고 온다
+		
+		//반복문
+		function testRepeat(){
+			//case1) 일반적인 for문장
+// 			var objs = $("p");
+// 			for(var i=0; i<objs.length; i++){
+// 				alert(i + "번째: " + $(objs[i]).html());
+// 			}
+			 
+			 
+			//case2) juqery each문 사용 -selector 이용
+// 			$("p").each(function(){
+// 				console.log(this); //==> objs[i]	/ <p>
+// 				alert($($(this).html());
+// 			});
+				
+// 			$("p").each(function(idx, obj){
+// 				console.log(idx + "/"+ obj); //==> objs[i]	/ <p>
+// 				alert($(obj).html());
+// 			});
+
+			//case3) jquery each문 사용 - object 이용
+			var obj = ["현대", "기아", "쉐보레"]; // <== 서버로 결과를 받은 list인 경우 이런식으로 사용하기도 함
+			$.each(arr.function(idx,obj){
+				//arr[idx] ==> obj
+				console.log(obj);
+				//console.log(this);
+				
+			});
+			
+		}
+	</script>
+</head>
+<body>
+	<p><strong>아빠상어 뚜루루뚜루</strong></p>
+	<p>엄마상어 뚜루루뚜루</p>
+	<p>아기상어 뚜루루뚜루</p>
+	<p>할머니상어 뚜루루뚜루</p>
+	<hr>
+	<button type="button" onclick="getHTML()">html</button> 
+	<button type="button" onclick="getTEXT()">text</button>
+	<button type="button" onclick="testRepeat()">반복문테스트</button>
+	<div id="result">
+	</div>
+</body>
+</html>

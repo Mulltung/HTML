@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>JS연산자</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str1 = "Welcome to";
+		var str2 = "JavaScript";
+		var str3 = str1 + str2; // => "Welcome toJavaScript" 
+		var str4 = str1 + " " +str2; // => "Welcome to JavaScript" 
+		document.write(str4)
+		
+		document.write("<br>");
+		
+		//숫자와 문자를 연결
+		var no1 = 10;
+		var no2 = 20;
+		var no3 = no1 + no2;
+		document.write(no3);
+		var str5 = "홍길동";
+		document.write(no3 + str5);
+		document.write("<br>");
+		
+		document.write(no1 + str5 + no2); //숫자+글자+숫자
+		document.write("<br>");
+		document.write(no1 + no2 + str5); //숫자+숫자+글자
+		document.write("<br>");
+		document.write(no1 + no2 + str5 + no1 + no2); //숫자+숫자+글자+숫자+숫자 //글자 뒤에 숫자가 오면 글자로 바뀐다
+	</script>
+</body>
+</html>

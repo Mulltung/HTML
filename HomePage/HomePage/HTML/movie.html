@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>영화</title>
+	<style type="text/css">
+		body{
+	 		padding : 10px 30px;
+		}
+		
+		img {
+			width : 300px;
+			height: 300px;
+		}
+	
+		div{
+			border : 1px solid silver;
+			width : 350px;
+			height: 300px;
+			text-align: center;
+			
+		}
+		
+		video{
+			width  : 100%;
+			height : 300px;
+		}
+		
+		#ex1,#ex2,#ex3{
+			margin: 6px
+		}
+		
+		.comcom{
+			float: left;
+			height : 500px;
+		}
+	
+	</style>
+	
+	<video src = # id="playmedia" controls autoplay></video>
+	
+	<script type="text/javascript">
+		function clickimg(id){
+			document.getElementById('playmedia').src="../movie/"+id+".mp4";
+		}
+	</script>
+</head>
+	<div id="ex1" class ="comcom">
+		<img alt ="짱구" src="../IMAGES/jj.jpg" id ="media1" onclick ="clickimg(this.id)"/>
+		<p>
+		짱구 극장판 28기 - 낙서왕국과 대강 네명의 용사
+		</p>
+		<br>
+		<br>
+		<input type="submit" value="쇼핑카트에 추가하기">
+		
+	</div>
+	<div id="ex2" class ="comcom">
+		<img alt ="매드맥스" src="../IMAGES/mad.jfif" id ="media2" onclick ="clickimg(this.id)"/>
+		<p>
+		매드맥스
+		</p>
+		<br>
+		<br>
+		<input type="submit" value="쇼핑카트에 추가하기">
+		
+	</div>
+	<div id="ex3" class ="comcom">
+		<img alt ="올드보이" src="../IMAGES/old.jfif" id ="media3" onclick ="clickimg(this.id)"/>
+		<p>
+		올드보이
+		</p>
+		<br>
+		<br>
+		<input type="submit" value="쇼핑카트에 추가하기">
+		
+	</div>
+</body>
+</html>

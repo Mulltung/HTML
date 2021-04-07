@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			//예제1
+			/* 
+				$("p").click(function() {
+				// 부모가 div이면 alert()주기
+				if($(this).parent().is("div")){
+					alert("부모가 div입니다.")
+				}
+			}); 
+			
+			*/
+			
+			//예제2
+			$("p").click(function(e) {
+				if($(this).parent().is("div")){
+					$(this).clone().appendTo($(this).parent());
+				}else{alert("작업대상이 아닙니다.")}
+			});
+			
+		});
+	</script>
+</head>
+<body>
+	<!--예제1)
+	 <p>클릭하세요1</p>
+	 <div>
+		<p>클릭하세요2</p> 
+	</div> -->
+	
+	<hr>
+	
+	<div>
+		<p id="mm">무궁화 꽃이 피었습니다.</p>
+	</div>
+	<p>은주는 예쁘다~</p>
+	<div>
+		<p id="ss">사뿐이 즈려밟고 가시옵소서
+	</div>
+	
+</body>
+</html>

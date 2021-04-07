@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		p, div {
+			width: 200px;
+			hight: 100px;
+		}
+		
+		#ex1{
+			background-color: aqua;
+		}
+		
+		#ex2{
+			background-color: yellow;
+			position: absolute;
+			left: 50px;
+			top: 30px;
+		}
+		
+		#ex3{
+			background-color: green;
+		}
+		
+		#container{
+			background-color: red;
+		}
+		
+		img { 
+			width: 300px;
+			position :  relative;
+			top: 100px;
+			z-index: -1;
+		}
+		img+p{   
+			color: red;
+		}
+		
+	</style>
+</head>
+<body>
+	<h1>position</h1>
+	<p id="ex1">블럭1</p>
+	<div id="container">
+	<div id="ex2">블럭2 (position)</div>
+	</div>
+	<p id="ex3">블럭3</p>
+	
+	<hr>
+	
+	<h1>z- index 연습</h1>
+	<img alt="사자" src="../images/lion.jpg">
+	<p>그만!</p>
+</body>
+</html>

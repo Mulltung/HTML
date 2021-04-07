@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">	
+	body, h1, h1, h2, h3, h4 ,h5, h6, p{
+		margin: 5px;
+		
+	}
+	
+	header{
+		background-color: pink;
+		line-height : 80px;
+		text-align: center;
+		border-radius : 100px;
+	}
+	
+	
+	nav{
+		background-color: yellow;
+		float: left;
+		width: calc(30% - 10px);
+		height: 600px;
+		padding-left: 10px; 
+		padding-top :50px;
+		border-radius : 100px;
+		
+	}
+	
+
+	section{	
+		background-color: lime;
+		float: right;
+		width: calc(70% - 10px);
+		height: 600px;
+		padding-left: 10px; 
+		padding-top :50px;
+		border-radius : 100px;
+	}
+	
+	footer{
+		background-color: red;
+		color: white;
+		text-align: center;
+		line-height:40px;
+		border-radius : 100px;
+	}
+
+	nav,section{
+		height: calc(100vh - 120px);
+	}
+	img {
+		width : 130px;
+		height: 130px;
+	}
+	
+	article{
+	 padding: 10px
+	}
+	
+	#main{
+		min-width: 600px;
+	}
+	</style>
+	
+	
+</head>
+<body>
+	<header><h1>MY Blog Page</h1></header>
+	
+	<div id="main">
+		<nav>
+			<h1>Links</h1>
+			<ul>
+				<li><a href="https://www.w3schools.com/" target="_blank">W3C</a></li>
+				<li><a href="#">MOZILLA</a></li>
+				<li><a href="#">HTML Dogs</a></li>
+				<img src="../images/ti.jfif" >
+				<br>
+				호랑이
+			</ul>
+		</nav>
+	</div>
+	
+	<section>
+		<article>
+			<h3>Semantic Tags</h3>
+			<p>시멘틱 요소(Semantic elements)들은 브라우저에게 요소의 의미나 목적을 명확하게 알려주는 요소이다.</p>
+		</article>
+		<br>
+		<article>
+		<h3>div와 span</h3>
+		<p>div은 "divide"의 약자로서 페이지를 논리적인 섹션으로 분리하는데 사용되는 태그이다. span요소는 인라인 요소로서 텍스트를 위한 컨테이너로 사용할 수 있다.</p>
+		</article>
+	</section>
+	
+	<footer>
+		Copyright(c)2013 HONG
+	</footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="EUC-KR">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h3>가위바위보 게임</h3>
+	<p>가위, 바위, 보 중 하나를 입력하시오.</p>
+	<input type="text" id="gbb">
+	<button type="button" onclick="gbb()">게임시작</button>
+	
+	
+	<script type="text/javascript">
+		function gbb(){
+			var a = prompt("가위 바위 보를 입력해주세요")
+			var b = Math.floor(Math.random()*3);
+			var c = ["가위","바위","보"];
+			
+			document.write("사용자 : " + a + "<br>")
+			document.write("컴퓨터 : " + c[b] + "<br>")
+			
+			if(a==c[b]){
+				document.write("비겼습니다.")
+			}else if (a=="가위" && c[b]=="바위"){
+				document.write("컴퓨터 승")
+			}else if (a=="가위" && c[b]=="보"){
+				document.write("당신 승")
+			}else if (a=="바위" && c[b]=="보"){
+				document.write("컴퓨터 승")
+			}else if (a=="바위" && c[b]=="가위"){
+				document.write("당신 승")
+			}else if (a=="보" && c[b]=="가위"){
+				document.write("컴퓨터 승")
+			}else if (a=="보" && c[b]=="바위"){
+				document.write("당신 승")
+			}
+		}
+		
+		//선생님 풀이
+		function gbb(){
+			var arrGbb= ["가위","바위","보"]; // 0,1,2
+		  	//Math.random()*3 // 0~3! => 0~2.9999
+		  	var comIdx = parseInt(Math.random()*3); //Math.floor(Math.random()*3)
+			var comGbb = arrGbb[comIdx];
+		  	
+		  	var userGbb = document.getElementById("gbb").value;	
+		  	var userIdx = arrGbb.indexof(userGbb);
+		  	
+		  	//가위바위보 비교
+		  	if(comIdx == userIdx){
+		  		alert("비겼습니다.\n컴퓨터 : " + comGbb + "\n사용자 :" + userGbb);
+		  	}else if(comIdx > userIdx){ //2,1 2,0 1,0
+		  		//사용자가 이긴 경우
+				// (컴,사) : (0,1) (1,2) (2,0)
+				if(comIdx == 0 && userIdx == 2) { //컴퓨터가 이김
+					alert("졌습니다.\n컴퓨터 : " + comGbb + "\n사용자 : " + userGbb);
+				} else{ //사용자가 이긴 경우
+			  		arler("이겼습니다.\n컴퓨터 :" + comGbb + "\n사용자 :" + userGbb)
+		  	} 
+		  	} 
+		  		
+		  		
+		  		if(comIdx > userIdx){ //2,1 2,0 1,0
+		  		
+		  	}
+		  		
+		}	
+		
+		
+	</script>
+
+</body>
+</html>

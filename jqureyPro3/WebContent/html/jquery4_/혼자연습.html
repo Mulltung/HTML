@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#btnview").click(function() {
+				var str = ""
+						+ $("#user").value() + "\n"
+						+ $(":radio[name=gender]:checked").val() + "\n"
+						+ $("#intro").val() + "\n"
+						+ $("#work").val() ;
+				alert(str);
+				
+				
+				
+				$("#btnview").click(function() {
+					var str = ""
+							+ "체크박스 : " + $("#chk").attr("checked")
+				});
+				
+				$("p").click(function() {
+					var str = $(this).attr("title");
+					var img = $("<img scr='../../img/"+str+">">);
+					$(this).append(img);
+				});
+						
+						
+						
+			});
+		});
+	</script>
+</head>
+<body>
+	<form>
+		<label for="user">이름</label>
+		<input type= "text" id="user" value="유재석">
+		<br>
+		<label>성별</label>
+		<input type="radio" id="genderman" name="gender" value="남자" checked="checked">
+		<label for="genderman">남자</label>
+		<input type="radio" id="genderwoman" name="gender" value="여자" checked="checked">
+		<label for="gnderwoman">여자</label>
+		<br>
+		<label for="intro">소개</label>
+		<textarea rows="" cols=""></textarea>
+		<br>
+		<label for="work">직업</label>
+		<select id="work">
+			<option value="ti">ti</option>
+			<option value="te">te</option>
+			<option value="tl">tl</option>
+		</select>
+		<button type="button" id="btnview"></button>
+	</form>
+</body>
+</html>

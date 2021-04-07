@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="kr">
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<style type="text/css">
+		img.tmp{
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+	<script type="text/javascript">
+		//예제5
+		//꽃 이름을 클릭하면 해당 꽃 이미지가 추가
+		//꽃 이미지는 꽃 이름의 자식 요소로 추가
+		$(document).ready(function() {
+			$("p").click(function() {
+				//방법 1)
+//				$("p").click(function() {
+// 				var str = $(e.target).attr("title")
+// 				var addobj = $("<img src='../../img/" +str + ">");
+// 				$(this).append(addobj);
+//				}
+
+// 				//방법 2)
+// 				var fileName = $(this).attr("title"); // $ p태그			
+// 				//이미지 만들어서
+// 				var img = $("<img>"); // <img>
+// 				img.attr("src","../../img/" + fileName);			
+// 				//p의 자식으로 추가
+// 				$(this).append(img);
+
+				//방법 3)
+				var img = $("<img>",{
+					"src" : "../../img/" + fileName,
+					//alt를
+					//var strAlt = $(this).text();로 만들어서 넣어도 된다.
+					"alt" : strAlt,
+					"class" : "tmp"
+					});
+ 				$(this).append(img);
+				//경로를 전역변수로 생성하는게 좋다.
+				//var imgRoot = "../../img/";
+				
+			});
+		});
+	</script>
+</head>
+<body>
+	<form>
+		<p title="1.jpg">튜울립</p><br>
+		<p title="2.jpg">국화</p><br>
+		<p title="3.jpg">코알라</p><br>
+		<p title="4.jpg">수국</p><br>
+<!-- 		<p><input type="hidden" value="4.jpg"></p>  //바람직한 방법 -->
+		
+	</form>
+</body>
+</html>

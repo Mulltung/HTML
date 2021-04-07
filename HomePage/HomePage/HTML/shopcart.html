@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>쇼핑카트 페이지</title>
+	<style type="text/css">
+		table {
+			text-align: center;
+			border-collapse : collapse;
+		}
+		
+		table th {
+			font-weight:bold;
+			border : 0.5px solid black;
+		}
+		
+		table td {
+			border : 0.5px solid black;
+		}
+	</style>
+</head>
+<body>
+	<form>
+		<table>
+			
+			<th>품목</th>
+			<th>가격</th>
+			<th>수량</th>
+			<th>합계</th>
+			
+			<tr>
+				<td>컴퓨터 세트</td>
+				<td>2,000,000원</td>
+				<td><input type="number" name="comnumber" placeholder="0"></td>
+				<td><input type="text" name="sum" size="10" maxlength="30" placeholder="0"></td>
+			</tr>
+			<tr>
+				<td>티셔츠</td>
+				<td>50,000원</td>
+				<td><input type="number" name="tnumber" placeholder="0"></td>
+				<td><input type="text" name="sum" size="10" maxlength="30" placeholder="0"></td>
+			</tr>
+			<tr>
+				<td>음악파일</td>
+				<td>1,000원</td>
+				<td><input type="number" name="mnumber" placeholder="0"></td>
+				<td><input type="text" name="sum" size="10" maxlength="30" placeholder="0"></td>
+			</tr>
+			<tr>
+				<td>영화파일</td>
+				<td>5,000</td>
+				<td><input type="number" name="mvnumber" placeholder="0"></td>
+				<td><input type="text" name="sum" size="10" maxlength="30" placeholder="0"></td>
+			</tr>
+		</table>
+		<input type="submit" value="제출">
+		<input type="submit" value="구매">
+		<input type="reset" value="초기화">
+		<br>
+		<a href="main.html" target="_blank">Back to Home</a>
+	</form>
+</body>
+</html>

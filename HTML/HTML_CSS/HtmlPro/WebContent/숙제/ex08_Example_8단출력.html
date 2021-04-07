@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		div {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+    <script>
+//     var randomNo = Math.random();//0~0.99999
+//     var randomNo = parseInt(Math.random() * 100 + 1);//1~100.9999 => parseInt 1~100
+     
+
+    
+    function pickNow(){
+        var dan = document.getElementById("gbb").value;
+        var result = "";
+      //구구단계산
+        for(var i = 1 ; i < 10 ; i++){
+        	result += dan + "*" + i + "=" + (dan*i) + "<br>";
+        }
+
+//         document.getElementById("result").innerHTML = result;
+
+
+
+
+		// case 1) 요소를 생성해서 추가 - createElement
+//     	var ele = document.createElement("p");
+//     	ele.innerHTML = result;
+//     	document.getElementById("result").appendChild(ele);
+
+
+		// case 2) 텍스트노드를 생성해서 추가 - createTextNode
+		var node = document.createTextNode(result);
+		document.getElementById("result").appendChild(node);
+		
+		// case 3)	innerHTML
+		var tmpHtml = document.getElementById("result").innerHTML;	
+		tmpHtml = tmpHtml + result;
+		document.getElementById("result").innerHTML = tmlHtml;
+    }
+    </script>
+	 	
+	<div>
+ 		<p>구구단 출력기</p>
+<!-- 	    <input id="userNum" type="text" size="5"> -->
+	    <select id ="gbb">
+	    	<option value="2">2단</option>
+	    	<option value="3">3단</option>
+	    	<option value="4">4단</option>
+	    	<option value="5">5단</option>
+	    	<option value="6">6단</option>
+	    	<option value="7">7단</option>
+	    </select>
+	    <button type="button" onclick="pickNow();">출력</button>
+    </div>
+    
+    <hr>
+    
+<!--     <div> -->
+<!--         <textarea id="result" rows="50" cols="50" readonly></textarea> -->
+<!--     </div> -->
+    
+    <div id ="result">
+    </div>
+    
+    
+    <!--단수 설정 -->
+    <script type="text/javascript">
+    	var parentEle = document.getElementById("ggb"); //<select>
+    	
+    	for(var i=0; i<8 ; i++){
+    	// <option value="2">2단</option>
+    	var ele = document.createElement("option");
+    	ele.value = 1;
+    	ele.innerHTML = i + "단";
+    	
+    	paretEle.appenChile(ele);
+    	
+    	}
+    </script>
+</body>
+</html>

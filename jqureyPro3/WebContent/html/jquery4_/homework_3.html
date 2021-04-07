@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<style type="text/css">
+		input[class="c"] + label {
+			border: 2px solid #bcbcbc;
+			cursor: pointer;
+		}
+		
+		input[class="c"]:checked + label {
+			background-color: silver;
+		}
+		
+		input[class="c"]{
+			display : none;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			// 전체선택, 전체해제
+			$("#chkAll").click(function() {
+				var isChecked = $(this).prop("checked");
+				if(isChecked){
+					$("input[name=chkchk]").prop("checked",true);
+				}else {$("input[name=chkchk]").prop("checked",false)}
+			});
+			
+			// 하나 체크 해제시 전체해제, 올체크시 전체체크
+			$("input[name=chkchk]").click(function() {
+				var a = $(":checkbox:checked").not("#chkAll").length;
+				var b = $("input[name=chkchk]").length;
+				
+				if(a == b){
+					$("#chkAll").prop("checked",true);
+				}else if(a != b){
+					$("#chkAll").prop("checked",false);
+				}
+			});
+
+		});
+		
+	</script>
+</head>
+<body>
+	<input type="checkbox" id="chkAll" class="c">
+	<label for="chkAll">동물</label>
+	<input type="checkbox" id="chk1" name="chkchk" class="c">
+	<label for="chk1">강아지</label>
+	<input type="checkbox" id="chk2" name="chkchk" class="c">
+	<label for="chk2">고양이</label>
+	<input type="checkbox" id="chk3" name="chkchk" class="c">
+	<label for="chk3">원숭이</label>
+	<input type="checkbox" id="chk4" name="chkchk" class="c">
+	<label for="chk4">다람쥐</label>
+	<input type="checkbox" id="chk5" name="chkchk" class="c">
+	<label for="chk5">오징어</label>
+</body>
+</html>

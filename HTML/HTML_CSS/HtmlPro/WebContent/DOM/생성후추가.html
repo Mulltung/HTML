@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+	<script type="text/javascript">
+		
+		function addtext(t){
+			var node = document.createTextNode(t);
+			document.getElementById("target").appendChild(node);
+		}
+		
+		// 이미지 소스를 가지고 있는 배열
+		var arrImgSrc = ["jj.jpg","mad.jfif","Lion.jpg","nasa1.png","nasa3.png"];
+		function addImg(){
+			var arr = document.getElementsByTagName("li");
+			
+			for(var i=0 ; i < arr.length ; i++) {
+				// 이미지 요소 생성
+				var imgObj = document.createElement("img");
+				imgObj.alt = "뭐지";
+				imgObj.src = "../images/" + arrImgSrc[i];
+				imgObj.height = "100";
+			
+				arr[i].appendChild(imgObj);  
+				// <li>아메리카노</li> --> <li>아메리카노<img></li>
+			}
+		}
+	</script>
+	
+	
+<body>
+		<p>무궁화 꽃이 피었습니다. 추가하기</p>
+		<div id ="target"	style="font : 20px bold;"
+			onclick="addtext('무궁화 꽃이 피었습니다.')">
+			여기를 클릭하세요.
+		</div>
+		
+		<hr>
+		
+		<p id="tmp">리스트에 새로운 이미지 태그 만들어 추가하기</p>
+		<button type="button" onclick="addImg()">실행</button>
+		<ul id="tmp2">
+			<li>컴퓨터1</li>
+			<li>식품2</li>
+			<li>호랑이</li>
+			<li>cloud03</li>
+			<li>coffee1</li>
+	</ul>
+	
+	
+	<hr>
+	
+	단락 삭제하기 (실패)
+	<div id="target2">
+		<p id="p1">첫번째 단락</p>
+		<p id="p2">두번째 단락</p>
+	</div>
+	<button type="button" onclick="removeEle()">삭제	</button>
+	
+	<script type="text/javascript">
+	function removeEle(){
+		var parentEle = document.getElementById("target2"); //<div>
+		var childEle = document.getElementById("p1"); //<p>
+		console.log(parentEle);
+		console.log(childEle);
+		parentEle.removeChild(childEle);
+		
+	}
+	</script>	
+	
+	<hr>
+	
+	클릭 시 이미지 표시하기
+	<div>
+			<ul >
+				<li id="tmp1" onclick="addImages(this, 'jj.jpg')">컴퓨터1</li>
+				<li id="tmp2" onclick="addImages(this, 'mad.jfif')">식품2</li>
+				<li id="tmp3" onclick="addImages(this, 'Lion.jpg')">호랑이</li>
+				<li id="tmp4" onclick="addImages(this, 'nasa1.png')">cloud03</li>
+				<li id="tmp5" onclick="addImages(this, 'nasa3.png')">coffee1</li>
+			</ul>
+	</div>
+	
+	<script type="text/javascript">
+
+	function addImages(obj, fileName){
+		var arrImgs = document.getElementsByTagName("img")
+		for(var i = 0; i < arrImgs.length ; i++){
+			arrImgs[i].remove(); // <li>
+		}
+// 		alert(obj); //li가 나온다
+// 		alert(obj.innerHTML); //컴퓨터1이 나온다.
+// 		alert(obj.id); //tmp1이 나온다.
+		
+		var objImg = document.createElement("img");
+		objImg.src = "../images/" + fileName;
+		objImg.height = "100";
+		
+		obj.appendChild(objImg);  
+	}
+	</script>
+	
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#btnhidden").click(function() {
+				$(":hidden").each(function() {
+					alert($(this).html());
+				});
+			});
+			$("#btnvisible").click(function() {
+				$(":visible").each(function() {
+					alert($(this).html());
+			});
+		});
+		});
+	</script>
+</head>
+<body>
+	<form>
+		<p>보이는 문단</p>
+		<p style="visibility: hidden;">숨겨진 문단</p>
+		<p style="display : none;">자리를 차지 하지 못한 문단</p>
+		<p style="opacity : 0;">투명한 문단</p>
+		<hr>
+		<button id="btnhidden">hidden요소</button><button id="btnvisible">visible요소</button>
+	</form>
+</body>
+</html>

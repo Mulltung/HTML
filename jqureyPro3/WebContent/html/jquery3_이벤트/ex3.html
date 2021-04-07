@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+// 			// 1) 마우스를 이미지 위에 올리면 다른 이미지로 변경
+// 			var orginSrc1 = "../../img/.1jpg"
+// 			var orginSrc2 = "../../img/.2jpg"
+// 			var orginSrc3 = "../../img/.3jpg"
+// 			$("img").mouseover(function(e){
+// 				e.target.src = "../../img/nasa3.jpg"
+// 			});
+// 			$("img").mouseout(function(e){
+// 				e.target.src = orginSrc
+// 			});
+			
+// 			// 2) 이미지 더블 클릭 시 이미지 사라지고 보여짐
+// 			$("img").on({
+// 				dblclick : function(){
+// 	                $(this).css("display","none");
+// 				}
+// 			});
+			
+			
+// 			// 3) 이미지가 다 사라지면 버튼 생성
+// 				// 화면 로딩시 버튼 숨기기
+// 				$("button").css("display", "none");
+// 				// 보이는 이미지가 없으면 버튼 보이기
+// 				var imgs = $("img");
+// 				for (var i = 0; i < imgs.length ; i++){
+// 					if(imgs[i].style.display == "none"){
+// 						cmt++;
+// 						console.log(cmt);
+// 					}
+					
+// 				}
+				
+// 				if(cnt == imgs.length) $("button").css("display", "inline");
+				
+// // 				// 보이는 이미지가 없으면 버튼 보이기2
+// // 				$("img").each(function(idx, item){
+// // 					if(item.style.display == "none") cnt++;
+// // 				});
+
+			
+			// 이미지에 마우스오버 - 다른 이미지 보이기
+				$("img").mouseover(function(){
+				//case1) this 사용
+				//this ==> <img>
+				//this.src ==> "../../images/~"
+				
+				//case2) event 객체 사용
+				console.log(e.target.scr);
+				
+				//마우스아웃 시 원래 이미지로 돌리기 위해서
+				var orginSrc = e.target.src;
+				e.target.src = "../../images/1.jpg"
+				
+				});
+			
+			// 이미지에 마우스아웃 - 원래 이미지 보이기
+				$("img").mouseout(function(){
+					e.target.src = orginSrc;
+				});
+			
+			
+			// 이미지에 더블클릭 - 이미지 사라지기
+				$("img").dblclick(function(){
+					console.log(this);
+				// case1) hide jq메소드 사용
+				// $(this).hide();
+				
+				// case2) css jq메소드 사용
+				// $(this).css("display", "none");
+				
+				// case3) js 사용
+					this.style.dispaly = "none";
+			
+			// 이미지가 하나도 없으면 [이미지보이기]버튼이 나타나기
+				showBtn();
+				});
+				
+				$("button").click(function(){
+					
+				});
+			
+		});
+		
+		// 버튼 보여주기
+		function showBtn(){
+			//$("img").length와 보이지 않는 이미지의 개수 비교
+			// 같으면 버튼 보이기
+			var cnt = 0; //보이지 않는다.
+			$(img).each(function(idx,item){
+				console.log(item);
+				// item ==> <img>
+				// item.style.display
+				if($(item).css("display") == "none") cnt++;
+			});
+			
+			if($("img").length = cnt) { //보이지 않는 이미지의 개수와 이미지 개수가 같으면
+				$("button").css("display","imline");	
+			}		
+		}
+		
+		// 버튼 보여주기
+		function showBtn2(){
+			var flag = false;
+			$("img").each(function(idx, item){
+				if($(item).css("display") != "none"){
+					flag = true;
+				}
+			});
+			
+			if(flag) return;
+			$("button").css("display","inline")	
+		}
+	</script>
+</head>
+<body>
+	<div>
+		<img alt="jj" src="../../img/1.jpg" width="300px" height="300px">
+		<img alt="jj" src="../../img/2.jpg" width="300px" height="300px">
+		<img alt="jj" src="../../img/3.jpg" width="300px" height="300px">
+	</div>
+	<button type="button">이미지보이기</button>
+</body>
+</html>

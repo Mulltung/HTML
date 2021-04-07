@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h3>로또번호생성</h3>
+	<button type="button" onclick="getLotto()">생성</button>
+	<br>
+	로또번호 :<span id =lottoResult></span><br>
+
+	<script type="text/javascript">
+		function getLotto(){
+			//1~45까지 중복없이 랜덤으로 6개의 숫자 생성
+			var arr=[];
+			
+			while(arr.length < 6){
+				//Math.random*45 + 1 //1~46! => 1 ~ 45.9999
+				var no = Math.floor(Math.random()* 45 + 1)
+				
+				// 배열에 담기 전에 중복 값이 있는지 체크
+				if(arr.indexOf(no) == -1) {
+					arr.push(no);
+				}
+			}
+			//배열정렬
+			arr.sort(function (a,b){
+// 				consle.log("a : " + a);
+// 				consle.log("b : " + b);
+// 				consle.log("a-b : " + (a - b));
+				return a-b;
+			});
+			document.getElementById("lottoResult").innerHTML =arr;
+		}
+	</script>
+</body>
+</html>

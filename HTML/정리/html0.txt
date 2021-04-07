@@ -1,0 +1,9 @@
+<!DOCTYPE html>                                                      //html 타입 문서, 첫줄에는 이것부터 쓰기, 처음에 주석도 쓰면 안된다.
+<html>                                                                   //html 시작
+	<head>
+		<title>나의 웹 페이지 </title>
+	</head>                                                    //head 시작과 끝
+	<body>
+		안녕하세요
+	</body>                                                    //body 시작과 끝
+</html>			                                      //html 끝

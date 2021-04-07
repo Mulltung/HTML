@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="../../js/jquery-3.6.0.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			// 마우스를 움직이면 좌표값을 얻어 div에 출력
+			$("body").mousemove(function(e){
+				var str = "pageX,Y: " + e.pageX + "," + e.pageY 
+						 +"screenX,Y: "  + e.screenX + "," + e.screenY;
+				$("div").html(str);
+			});
+		});
+		
+		
+			
+	</script>
+</head>
+<body>
+	<div id="log" style="width: 300px; height: 300px; background-color: yellow;">
+	</div>
+</body>
+</html>

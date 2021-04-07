@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>객체 생성 방법</title>
+	<script type="text/javascript">
+		
+		//상수로 객체 생성
+		var myCar= {
+				medel : "GV80"
+			   ,color : "blue"
+			   ,year  : 2002
+			   ,speed : 30
+			   ,brake : function()	{
+					//속도 줄이기 (speed)
+				   this.speed -= 10;
+			   }
+			   ,accel : function()	{
+				 	//속도 올리기 (speed)
+				 	this.speed += 10;
+				 	//this.speed => myCar.speed
+			   }		
+		}
+
+		document.write(myCar.color);
+		document.write("<br>");
+		document.write("색상변경");
+		document.write("<br>");
+		myCar.color = "red";
+		document.write(myCar.color);
+		document.write("<br>");
+
+		
+		alert(myCar.color);
+		myCar.color = "red";
+		alert(myCar.color);
+
+		alert(myCar.speed);
+		myCar.brake() //speed 속도를 줄인다.
+		alert(myCar.speed);
+		
+		
+		
+		
+		
+		
+		// 생성자로 객체 생성
+		function Car(model, color, speed){
+			this.model = model;
+			this.color = color;
+			this.speed = speed;
+			this.brake = function(){
+				this.speed -= 10;
+			}
+			this.accel = function() {
+				this.speed += 10;
+			}
+		}
+			
+		var hongCar = new Car ("GV70", "red", 0);
+		var leeCar = new Car ("GV80", "blue", 100);
+		//...
+		hongCar.color = "white";
+		hongCar.brake();
+		
+		
+
+		
+		// object를 배열로 변환 - Object.values()
+		document.write("================================================")
+		document.write("<br>");
+		document.write("Object를 배열로 변환 - Object.values()")
+		document.write("<br>");
+		document.write("================================================")
+		document.write("<br>");
+		var person = {
+			name : "홍길동"
+		   ,age  : 30
+		   ,city : "대전"
+		   ,nation : "대한민국"
+			}
+		var tmp = Object.values(person);
+//		alert(tmp);
+		document.write(tmp);
+		document.write("<br>");
+		document.write("<br>");
+
+
+		//Object를 문자로 변환 - JSON.stringify()
+		document.write("<br>");
+		document.write("================================================")
+		document.write("<br>");
+		document.write("Object를 문자로 변환 - JSON.stringify()")
+		document.write("<br>");
+		document.write("================================================")
+		document.write("<br>");
+		var person = {
+			name : "홍길동"
+		   ,age  : 30
+		   ,city : "대전"
+		   ,nation : "대한민국"
+			};
+		var tmp = JSON.stringify(person);
+//		alert(tmp);
+		document.write(tmp);
+	</script>
+</head>
+<body>
+
+</body>
+</html>
